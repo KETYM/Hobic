@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica JavaScript</title>
+    <title>Hobic.cl</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<div class="banner">
-    <img src="imagenes/banner.jpeg" alt="Banner">
-</div>
-<h1>Bienvenidos a Hobic</h1>
+    <header>>
+        <nav>
+            <a href="index.html">Inicio</a> |
+            <a href="libros.html">Libros</a> |
+            <a href="series.html">Series</a> |
+            <a href="carrito.html">🛒Carrito</a>
+        </nav>
+    </header>
+    <div class="banner">
+        <img src="imagenes/banner.jpeg" alt="Banner">
+    </div>
+    <h1>Bienvenidos a Hobic</h1>
 
     <main>
 
@@ -39,11 +48,7 @@
 
             <label for="nombre">Nombre:</label>
 
-            <input
-                type="text"
-                id="nombre"
-                placeholder="Escribe tu nombre"
-            >
+            <input type="text" id="nombre" placeholder="Escribe tu nombre">
 
             <button id="btn-saludar">
                 Saludar
@@ -79,11 +84,7 @@
 
             <div class="form-producto">
 
-                <input
-                    type="text"
-                    id="producto"
-                    placeholder="Nombre del producto"
-                >
+                <input type="text" id="producto" placeholder="Nombre del producto">
 
                 <button id="btn-buscar">
                     Buscar
@@ -150,4 +151,5 @@
 
 
 </body>
+
 </html>
