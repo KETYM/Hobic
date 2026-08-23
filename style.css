@@ -7,18 +7,29 @@
 header{
     width: 100%;
     background-color: #054792;
+    color: #ffffff; /* las rayitas blancas */
+    text-align: center;
+
 }
 /* Barra de navegación */
 nav {
   width: 100%;
   background-color: #043b7a; 
-  padding: 10px;   
+padding: 8px 20px;
   display: flex !important;  
   flex-wrap: wrap !important;    
-  justify-content: center;   
+ justify-content: space-between;
   align-items: center;
   gap: 15px;  
   box-sizing: border-box;               
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
+  margin-left: 120px; /*para centrar los enlaces */
 }
 
 /* Enlaces del menú */
@@ -34,10 +45,50 @@ nav a {
 nav a:hover {
   opacity: 0.8;              /* Ligera transparencia al pasar el mouse */
 }
+
+/* --- NUEVOS ESTILOS NAV DERECHO --- */
+.nav-derecha {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap; /* Evita que los elementos salten a la siguiente línea */
+}
+
+/* Ajuste al contenedor del usuario (login/saludo) para que no se quiebre */
+#user-nav-container, .nav-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap; /* Fuerza a que el texto se mantenga en una sola línea */
+}
+/* Botón de inicio de sesión (derecha) */
+.nav-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.nav-user-btn svg {
+  display: block;
+}
+
+.nav-user-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     color: #222;
@@ -51,15 +102,8 @@ body {
 
 h1 {
     text-align: center;
+    margin: 20px 0;
   
-}
-
-header {
-    background-color: #ffffff;
-    color: white;
-    text-align: center;
-    padding: 0;
-    width: 100%;
 }
 
 header h1 {
@@ -91,6 +135,7 @@ button {
     padding: 10px 16px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 button:hover {
@@ -138,6 +183,83 @@ input {
 
 .tarjeta h3 {
     margin-top: 0;
+}
+/* Tarjeta de autenticación */
+.auth-card {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+.btn-primary {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Enlace a Crear Cuenta */
+.auth-registro {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-registro a {
+  color: #043b7a;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.auth-registro a:hover {
+  text-decoration: underline;
+}
+
+/* Línea divisoria */
+.divisor-linea {
+  text-align: center;
+  margin: 18px 0;
+  position: relative;
+}
+
+.divisor-linea::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
+.divisor-linea span {
+  position: relative;
+  z-index: 2;
+  background-color: #ffffff;
+  padding: 0 10px;
+  color: #888;
+  font-size: 13px;
+}
+
+/* Botón Admin */
+.btn-admin {
+  display: block;
+  text-align: center;
+  width: 100%;
+  background-color: transparent;
+  color: #043b7a;
+  border: 1.5px solid #043b7a;
+  padding: 9px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-admin:hover {
+  background-color: #043b7a;
+  color: #ffffff;
 }
 
 .alerta {
