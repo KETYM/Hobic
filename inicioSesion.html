@@ -76,35 +76,7 @@
     <footer>
         <p>&copy; 2026 Hobic - Todos los derechos reservados</p>
     </footer>
-    <script>
-        document.getElementById('form-login').addEventListener('submit', function (e) {
-            e.preventDefault(); // Evita que recargue la página automáticamente
-
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const mensajeError = document.getElementById('mensaje-error');
-
-            // 1. Credenciales para Administrador
-            if (email === "admin@hobic.cl" && password === "admin123") {
-                sessionStorage.setItem('usuarioActual', JSON.stringify({ rol: 'admin', correo: email }));
-                alert("¡Bienvenido Administrador!");
-                window.location.href = "admin.html";
-                return;
-            }
-
-            // 2. Credenciales para Usuario Estándar (o usuario de prueba)
-            if (email === "usuario@hobic.cl" && password === "123456") {
-                sessionStorage.setItem('usuarioActual', JSON.stringify({ rol: 'cliente', correo: email }));
-                alert("¡Sesión iniciada con éxito!");
-                window.location.href = "index.html";
-                return;
-            }
-
-            // 3. Si no coincide con ninguna credencial válida
-            mensajeError.textContent = "Correo o contraseña incorrectos.";
-            mensajeError.style.display = "block";
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 

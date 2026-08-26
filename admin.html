@@ -50,48 +50,9 @@
         <p>Bienvenido al panel de control exclusivo para administradores.</p>
     </main>
 
-    <!-- AQUÍ ESTÁ EL SCRIPT QUE FALTABA -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const usuarioGuardado = sessionStorage.getItem('usuarioActual');
-            const userNavContainer = document.getElementById('user-nav-container');
+    <!-- EL SCRIPT -->
+    <script src="script.js"></script>
 
-            if (usuarioGuardado && userNavContainer) {
-                const usuario = JSON.parse(usuarioGuardado);
-                userNavContainer.removeAttribute('href'); // Deshabilita el enlace al login
-
-                if (usuario.rol === 'admin') {
-                    // Vista para Administrador
-                    userNavContainer.innerHTML = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"></path>
-                        </svg>
-                        <span>Hola, Admin</span>
-                        <button id="btn-logout" title="Cerrar sesión" style="background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 13px; margin-left: 10px; text-decoration: underline; padding: 0;">(Salir)</button>
-                    `;
-                } else {
-                    // Si un usuario normal intenta entrar aquí, lo devolvemos al inicio por seguridad
-                    alert("No tienes permisos para ver esta página.");
-                    window.location.href = "index.html";
-                }
-
-                // Evento para cerrar sesión
-                const btnLogout = document.getElementById('btn-logout');
-                if (btnLogout) {
-                    btnLogout.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                        sessionStorage.removeItem('usuarioActual');
-                        window.location.href = "index.html";
-                    });
-                }
-            } else {
-                // Si nadie ha iniciado sesión y entra a admin.html, lo manda a loguearse
-                alert("Debes iniciar sesión como administrador.");
-                window.location.href = "inicioSesion.html";
-            }
-        });
-    </script>
 </body>
 
 </html>
