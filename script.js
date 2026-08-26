@@ -300,6 +300,45 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-
+// ==========================================
+    // 8. LÓGICA DE BOTONES "COMPRAR" EN PROMOS (index.html)
+    // ==========================================
+    const botonesPromos = document.querySelectorAll('.btn-comprar-promo');
+    
+    if (botonesPromos.length > 0) {
+        botonesPromos.forEach(boton => {
+            boton.addEventListener('click', function(e) {
+                e.preventDefault(); // Evita que la página salte
+                
+                // Buscar la tarjeta completa donde está el botón
+                const tarjeta = this.closest('.tarjeta');
+                
+                if (tarjeta) {
+                    // Extraer los datos del HTML
+                    const tituloEl = tarjeta.querySelector('h3');
+                    const precioEl = tarjeta.querySelector('p'); // Donde dice "Precio: $15.990"
+                    const imgEl = tarjeta.querySelector('img');
+                    
+                    let nombre = tituloEl ? tituloEl.textContent.trim() : "Producto Promo";
+                    
+                    // Limpiar el precio (quitamos "Precio:", el "$" y el punto)
+                    let precioTexto = "0";
+                    if (precioEl) {
+                        precioTexto = precioEl.textContent.replace('Precio:', '').replace('$', '').replace('.', '').trim();
+                    }
+                    let precio = parseInt(precioTexto);
+                    
+                    let imagen = imgEl ? imgEl.getAttribute('src') : "imagenes/default.jpg";
+                    
+                    // Llamamos a la función mágica que creamos antes para guardar en memoria
+                    if (typeof agregarAlCarrito === 'function') {
+                        agregarAlCarrito(nombre, precio, imagen);
+                    } else {
+                        alert(`¡Se agregó "${nombre}" a tu carrito!`);
+                    }
+                }
+            });
+        });
+    }
 
 });
