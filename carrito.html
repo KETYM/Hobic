@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compra</title>
+    <title>Mi Carrito - Hobic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body>
+<body style="background-color: #f8f9fa;">
+    <!-- HEADER -->
     <header>
         <nav>
             <div class="nav-links">
@@ -22,7 +23,6 @@
                 <a href="blogs.html">Blogs</a>
             </div>
 
-            <!-- Contenedor derecho: Login + Carrito -->
             <div class="nav-derecha">
                 <a href="inicioSesion.html" class="nav-user-btn" id="user-nav-container">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -44,8 +44,56 @@
             </div>
         </nav>
     </header>
-    <h1>Carrito de Compras</h1>
 
+    <!-- CONTENIDO DEL CARRITO -->
+    <main class="container my-5">
+        <h2 class="fw-bold mb-4">Carrito de compras</h2>
+
+        <div class="row">
+ <!-- COLUMNA IZQUIERDA: Lista de Productos -->
+<div class="col-lg-8">
+    <div class="card shadow-sm border-0 mb-4">
+        
+        <!-- ESTE ES EL ÚNICO CÓDIGO QUE DEBE QUEDAR AQUÍ -->
+        <div class="card-body p-4" id="contenedor-productos-carrito">
+            
+        </div>
+
+    </div>
+</div>
+
+            <!-- COLUMNA DERECHA: Resumen de Compra -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm border-0 position-sticky" style="top: 20px;">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">Resumen de compra</h5>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted" id="resumen-cantidad">Subtotal (2 productos)</span>
+                            <span class="fw-bold" id="resumen-subtotal">$35.980</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                            <span class="text-muted">Envío</span>
+                            <span class="text-success fw-bold">Gratis</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="fw-bold fs-5">Total</span>
+                            <span class="fw-bold fs-4 text-primary" id="resumen-total">$35.980</span>
+                        </div>
+
+                        <a href="pago.html" class="btn btn-primary w-100 py-3 fw-bold shadow-none d-block text-center"
+                            style="background-color: #2563eb;">
+                            Continuar compra
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 
