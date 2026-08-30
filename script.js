@@ -110,6 +110,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
+            // Caso 3: Cualquier otro correo válido (para pruebas libres)
+            if (email !== "" && password.length >= 4) {
+                let nombreAuto = email.split('@')[0];
+                nombreAuto = nombreAuto.charAt(0).toUpperCase() + nombreAuto.slice(1);
+
+                sessionStorage.setItem('usuarioActual', JSON.stringify({ rol: 'cliente', correo: email }));
+                localStorage.setItem('usuario_nombre', nombreAuto);
+                alert(`¡Bienvenido ${nombreAuto}!`);
+                window.location.href = "blogs.html";
+                return;
+            }
+
             mensajeError.textContent = "Correo o contraseña incorrectos.";
             mensajeError.style.display = "block";
         });
