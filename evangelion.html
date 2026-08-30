@@ -74,7 +74,7 @@
                         </div>
                         <div>
                             <span class="d-block text-muted" style="font-size: 14px;">Autor</span>
-                            <span class="fw-bold">J.R.R. Tolkien</span>
+                            <span class="fw-bold">Hideaki Anno</span>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-center gap-3">
@@ -89,7 +89,7 @@
                         </div>
                         <div>
                             <span class="d-block text-muted" style="font-size: 14px;">Editorial</span>
-                            <span class="fw-bold">Minotauro</span>
+                            <span class="fw-bold">Norma Editorial</span>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-center gap-3">
@@ -98,8 +98,8 @@
                             <span class="fw-bold fs-5 text-secondary">Nº</span>
                         </div>
                         <div>
-                            <span class="d-block text-muted" style="font-size: 14px;">Páginas</span>
-                            <span class="fw-bold">488</span>
+                            <span class="d-block text-muted" style="font-size: 14px;">Capitulos</span>
+                            <span class="fw-bold">26</span>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-center gap-3">
@@ -127,10 +127,8 @@
                 <!-- Descripción -->
                 <h3 class="fs-4 mb-3">Descripción</h3>
                 <p class="text-secondary" style="line-height: 1.7; font-size: 16px;">
-                    En la adormecida e idílica Comarca, un joven hobbit recibe un encargo: custodiar el Anillo Único y
-                    emprender el viaje para su destrucción en la Grieta del Destino. Acompañado por magos, hombres,
-                    elfos y enanos, atravesará la Tierra Media y se internará en las sombras de Mordor, perseguido
-                    siempre por las huestes de Sauron, el Señor Oscuro.
+                    Neon Genesis Evangelion es una serie de anime japonesa de ciencia ficción y drama psicológico creada
+                    por el estudio Gainax y dirigida por Hideaki Anno, estrenada en 1995.
                 </p>
                 <!-- SECCIÓN DE CHAT EN VIVO -->
                 <div class="mt-5 pt-4 border-top">
@@ -170,8 +168,14 @@
                 <div class="border rounded p-4 shadow-sm bg-white position-sticky" style="top: 20px;">
                     <p class="text-muted small mb-2">Nuevo | +25 vendidos</p>
                     <h1 id="titulo-producto" class="fs-4 fw-bold mb-3">Evangelion</h1>
-                    <h2 class="display-6 fw-normal mb-3">$ 19.990</h2>
-
+                    <!-- Bloque de precio con descuento -->
+                    <div class="mb-3">
+                        <span class="text-decoration-line-through text-muted" style="font-size: 16px;">$18.990</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <h2 class="display-6 fw-normal mb-0">$ 15.990</h2>
+                            <span class="badge" style="background-color: #e0006c; font-size: 16px;">-15%</span>
+                        </div>
+                    </div>
                     <!-- Información de envío -->
                     <div class="mb-4">
                         <p class="text-success fw-bold mb-1">
@@ -202,7 +206,8 @@
 
                     <!-- Botones de Acción -->
                     <div class="d-flex flex-column gap-2">
-                        <button class="btn text-white py-2 fw-bold" style="background-color: #3483fa;">Comprar
+                        <button id="btn-comprar-ahora" class="btn text-white py-2 fw-bold"
+                            style="background-color: #3483fa;">Comprar
                             ahora</button>
                         <button id="btn-agregar-carrito" class="btn py-2 fw-bold"
                             style="background-color: #e3edfb; color: #3483fa;">Agregar al carrito</button>

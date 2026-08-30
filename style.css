@@ -92,6 +92,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     color: #222;
+    cursor: url('imagenes/joystick.png'), auto;
 }
 
 .banner img{
@@ -274,4 +275,7 @@ footer {
     color: white;
     padding: 20px;
     margin-top: 40px;
+}
+a, button, .btn {
+    cursor: url('imagenes/joystick.png'), pointer;
 }
