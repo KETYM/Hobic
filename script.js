@@ -487,8 +487,9 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "inicioSesion.html";
     });
   }
-
-  //11. lógica de filtrado y búsqueda (catalogo.html)
+  // ==========================================
+  // 11. LÓGICA DE FILTRADO Y BÚSQUEDA (catalogo.html)
+  // ==========================================
   const buscador = document.getElementById("buscador-catalogo");
   const botonesFiltro = document.querySelectorAll(".btn-filtro");
   const itemsCatalogo = document.querySelectorAll(".item-catalogo");
@@ -497,11 +498,9 @@ document.addEventListener("DOMContentLoaded", function () {
     botonesFiltro.forEach((boton) => {
       boton.addEventListener("click", function () {
         botonesFiltro.forEach((b) => {
-          b.classList.remove("btn-primary");
-          b.classList.add("btn-outline-secondary");
+          b.classList.remove("active");
+          this.classList.add("active");
         });
-        this.classList.remove("btn-outline-secondary");
-        this.classList.add("btn-primary");
 
         const categoria = this.getAttribute("data-filtro");
         itemsCatalogo.forEach((item) => {
@@ -530,5 +529,59 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
+  }
+ 
+  // ==========================================
+  // 12. BÚSQUEDA EN NAVBAR 
+  // ==========================================
+  const btnAbrirSearch = document.getElementById("btn-abrir-search-nav");
+  const btnCerrarSearch = document.getElementById("btn-cerrar-search-nav");
+  const searchOverlay = document.getElementById("search-overlay-nav");
+  const inputSearchNav = document.getElementById("input-busqueda-nav");
+  const formSearchNav = document.getElementById("form-busqueda-nav");
+
+  if (btnAbrirSearch && btnCerrarSearch && searchOverlay) {
+      // Abre la barra
+      btnAbrirSearch.addEventListener("click", function(e) {
+          e.preventDefault();
+          searchOverlay.classList.add("activo");
+          inputSearchNav.focus(); // Coloca el cursor parpadeando listo para escribir
+      });
+
+      // Cierra la barra
+      btnCerrarSearch.addEventListener("click", function() {
+          searchOverlay.classList.remove("activo");
+          inputSearchNav.value = ""; // Limpia lo que escribiste
+      });
+
+      // Al presionar Enter o hacer clic en la lupa interna
+      formSearchNav.addEventListener("submit", function(e) {
+          e.preventDefault();
+          const termino = inputSearchNav.value.trim();
+          
+          if (termino !== "") {
+              sessionStorage.setItem("busquedaPendiente", termino);
+              window.location.href = "catalogo.html";
+          }
+      });
+  }
+  // ==========================================
+  // 13. AUTO-FILTRADO AL LLEGAR AL CATÁLOGO
+  // ==========================================
+  const buscadorCatalogo = document.getElementById("buscador-catalogo");
+  const busquedaPendiente = sessionStorage.getItem("busquedaPendiente");
+
+  // Si existe la barra del catálogo y traemos una palabra guardada desde el navbar
+  if (buscadorCatalogo && busquedaPendiente) {
+      
+      // 1. Escribimos automáticamente la palabra en la barra grande del catálogo
+      buscadorCatalogo.value = busquedaPendiente;
+      
+      // 2. Simulamos que el usuario acaba de teclear para que se active tu filtro
+      const eventoInput = new Event("input");
+      buscadorCatalogo.dispatchEvent(eventoInput);
+      
+      // 3. Borramos la memoria para que el filtro no se quede pegado si recargas la página
+      sessionStorage.removeItem("busquedaPendiente");
   }
 });

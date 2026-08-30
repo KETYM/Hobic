@@ -27,9 +27,8 @@ padding: 8px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 8px;
   flex: 1;
-  margin-left: 120px; /*para centrar los enlaces */
 }
 
 /* Enlaces del menú */
@@ -37,8 +36,10 @@ nav a {
   color: #ffffff;            
   text-decoration: none;    
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   transition: opacity 0.2s ease;
+  padding: 8px 15px;
+  border-radius: 5px;
 }
 
 /* Efecto al pasar el cursor */
@@ -50,6 +51,7 @@ nav a:hover {
 .nav-derecha {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 20px;
   flex-wrap: nowrap; /* Evita que los elementos salten a la siguiente línea */
 }
@@ -92,7 +94,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     color: #222;
-    cursor: url('imagenes/joystick.png'), auto;
+    cursor: url('imagenes/joystick.png')16 16, auto;
 }
 
 .banner img{
@@ -277,5 +279,111 @@ footer {
     margin-top: 40px;
 }
 a, button, .btn {
-    cursor: url('imagenes/joystick.png'), pointer;
+    cursor: url('imagenes/joystick.png') 16 16, pointer;
+}
+.titulo-catalogo {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, #043b7a, #e0006c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.titulo-catalogo::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #e0006c;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+}
+/* Estilos para los filtros del catálogo */
+.btn-filtro {
+    border: 1px solid #dee2e6;
+    border-radius: 50px;
+    color: #495057;
+    background-color: #ffffff;
+    padding: 6px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    /* para congelar el tamaño */
+    width: max-content !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+.btn-filtro:hover {
+    border-color: #e0006c;
+    color: #e0006c;
+    background-color: #fff5f8;
+}
+
+.btn-filtro.active {
+    background-color: #043b7a;
+    color: #ffffff;
+    border-color: #043b7a;
+    box-shadow: 0 4px 8px rgba(4, 59, 122, 0.2);
+}
+/* ========================================== */
+/* RESPONSIVIDAD PARA PANTALLAS MÁS PEQUEÑAS  */
+/* ========================================== */
+@media (max-width: 992px) {
+    nav {
+        flex-direction: column !important; /* Apila los 3 bloques verticalmente */
+        justify-content: center;
+        gap: 15px;
+        padding: 15px 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap; /* Permite que los enlaces bajen de línea si no caben */
+        justify-content: center;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .nav-derecha {
+        justify-content: center; /* Centra el carrito y el login abajo */
+        width: 100%;
+    }
+}
+/* ========================================== */
+/* BUSCADOR barra nav         */
+/* ========================================== */
+.search-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #043b7a; /* El azul de tu barra */
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    z-index: 100;
+}
+
+.search-overlay.activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-overlay input::placeholder {
+    color: #8ab4f8;
+}
+
+.search-overlay input:focus {
+    box-shadow: none;
+    background-color: #021f40 !important;
+    color: white;
 }
