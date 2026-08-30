@@ -487,4 +487,48 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "inicioSesion.html";
     });
   }
+
+  //11. lógica de filtrado y búsqueda (catalogo.html)
+  const buscador = document.getElementById("buscador-catalogo");
+  const botonesFiltro = document.querySelectorAll(".btn-filtro");
+  const itemsCatalogo = document.querySelectorAll(".item-catalogo");
+
+  if (buscador && itemsCatalogo.length > 0) {
+    botonesFiltro.forEach((boton) => {
+      boton.addEventListener("click", function () {
+        botonesFiltro.forEach((b) => {
+          b.classList.remove("btn-primary");
+          b.classList.add("btn-outline-secondary");
+        });
+        this.classList.remove("btn-outline-secondary");
+        this.classList.add("btn-primary");
+
+        const categoria = this.getAttribute("data-filtro");
+        itemsCatalogo.forEach((item) => {
+          const itemCat = item.getAttribute("data-categoria");
+          if (categoria === "todos" || itemCat === categoria) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      });
+    });
+
+    //filtrar escribiendo en el buscador
+    buscador.addEventListener("input", function () {
+      const texto = this.value.toLowerCase().trim();
+      itemsCatalogo.forEach((item) => {
+        const titulo = item
+          .querySelector(".card-title")
+          .textContent.toLowerCase();
+        const categoria = item.getAttribute("data-categoria").toLowerCase();
+        if (titulo.includes(texto) || categoria.includes(texto)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  }
 });
