@@ -387,3 +387,29 @@ a, button, .btn {
     background-color: #021f40 !important;
     color: white;
 }
+/* ========================================== */
+/* AJUSTES DE GROSOR (NAVBAR Y FOOTER)        */
+/* ========================================== */
+
+/* 1. Barra de navegación más delgada */
+nav {
+    padding: 2px 20px !important; /* Reduce el espacio arriba y abajo de la barra */
+}
+
+/* 2. Achicamos sutilmente el logo para que no estire la barra */
+nav > a > svg {
+    height: 35px !important; 
+    width: auto !important;
+}
+
+/* 3. Quitamos relleno vertical extra a los enlaces centrales */
+.nav-links a {
+    padding: 4px 10px !important;
+}
+
+/* 4. Footer principal y retro más delgados */
+footer, .retro-footer {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    margin-top: 40px !important; /* Un poco de respiro antes de llegar al fondo */
+}

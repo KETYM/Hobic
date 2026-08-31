@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<link rel="stylesheet" href="style.css">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs</title>
+
+    <!--1. preconnect: Le dice al navegador que se conecte rápido a los servidores de Google Fonts.-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=VT323&display=swap"
+        rel="stylesheet">
+
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 
-<body>
-    <header>
-        <nav>
-            <!-- 1. LOGO SVG -->
-            <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 50" width="180" height="50">
-                    <path d="M12,10 Q15,10 15,5 Q15,10 18,10 Q15,10 15,15 Q15,10 12,10 Z" fill="#ff7eb3"/>
-                    <path d="M25,12 C18,12 12,18 12,28 C12,38 18,42 25,42 L25,25 Z" fill="#ffffff"/>
-                    <path d="M28,25 L28,42 C35,42 41,38 41,28 C41,18 35,12 28,12 Z" fill="#e0006c"/>
-                    <path d="M18,26 h-2 v2 h2 v2 h2 v-2 h2 v-2 h-2 v-2 h-2 v2 z" fill="#043b7a"/>
-                    <circle cx="34" cy="24" r="1.5" fill="#043b7a"/>
-                    <circle cx="37" cy="28" r="1.5" fill="#043b7a"/>
-                    <text x="50" y="36" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#ffffff" letter-spacing="-1">HOBI<tspan fill="#e0006c">C</tspan></text>
-                </svg>
-            </a>
+
+<!--Esta clase le aplica un fondo cuadriculado por defecto en css-->
+
+<body class="pattern-grid">
+    <header class="main-site-header">
+        <nav class="top-nav">
             <div class="nav-links">
                 <a href="index.html">Inicio</a> |
                 <a href="libros.html">Libros</a> |
@@ -31,12 +29,14 @@
                 <a href="videojuegos.html">Videojuegos</a> |
                 <a href="mangas.html">Mangas</a> |
                 <a href="catalogo.html">Catálogo</a> |
-                <a href="blogs.html">Blogs</a>
+                <!--'active' resalta la pág donde estamos-->
+                <a href="blogs.html" class="nav-active">Blogs</a>
             </div>
 
             <!-- Contenedor derecho: Login + Carrito -->
             <div class="nav-derecha">
                 <a href="inicioSesion.html" class="nav-user-btn" id="user-nav-container">
+                    <!--SVG -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
@@ -56,8 +56,248 @@
             </div>
         </nav>
     </header>
-    <h1>Blogs</h1>
-    <script src="script.js"></script>
+
+    <!--contenedor de blog (marco retro centrado)-->
+    <div class="neocities-wrapper">
+
+        <!--Banner superior del blog-->
+        <section class="retro-banner">
+            <h1 class="pixel-title">&starf; Mi HOBIC blog &starf;</h1>
+            <p class="pixel-subtitle">Mi diario de reseñas, colecciones, gustos y comunidad</p>
+
+            <!--Menú interactivo para cambiar fondo y el mo de color-->
+            <div class="theme-controls">
+                <label for="patternSelect">Fondo:</label>
+                <select id="patternSelect" class="retro-select">
+                    <option value="pattern-grid">Hoja Cuadriculada</option>
+                    <option value="pattern-dots">Puntos Polka</option>
+                    <option value="pattern-checker">Damero Retro</option>
+                </select>
+                <button id="btn-theme-toggle" class="btn-pixel">Modo Noche</button>
+            </div>
+        </section>
+
+        <!--Grid de 3 columnas-->
+        <div class="grid-container">
+            <!--COLUMNA 1 IZQ STICKERS  (aside sive para cosas no tan importantes pueden ser biografias, publicidad,etc)-->
+            <aside class="col-side">
+
+                <!--1. perfil-->
+                <div class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">&starf; Sobre Mí</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body text-center">
+                        <img src="imagenes/persona_blog.png" alt="Avatar" class="avatar-img">
+                        <h3 class="profile-name">Jane</h3>
+                        <p class="profile-bio">Estudiante, coleccionista de figuras y fanática de la lectura.</p>
+                    </div>
+                </div>
+                <!--Ventana de estado de animo-->
+                <div class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">En que ando?</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body text-center">
+                        <div class="mood-icon">📖🎶</div>
+                        <p class="mood-text"><strong>Leyendo Cadáver exquisito</strong></p>
+                        <small class="mood-sub">"Buen Día para programar"</small>
+                    </div>
+                </div>
+
+                <!--Otra ventana tablero de stickers-->
+                <div class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">Mis cosas Favs</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body stickers-board">
+                        <div class="sticker-item"><img src="imagenes/manga_ao_haru.jpg"
+                                class="sticker-img"><span>Mangas</span></div>
+                        <div class="sticker-item"><img src="imagenes/serieBroolyn.jpg"
+                                class="sticker-img"><span>Series</span></div>
+                        <div class="sticker-item"><img src="imagenes/libroIndignoDeSer.jpg"
+                                class="sticker-img"><span>Libros</span></div>
+                        <div class="sticker-item"><img src="imagenes/juegoStardewValley.jpg"
+                                class="sticker-img"><span>Juegos</span></div>
+                        <div class="sticker-item"><img src="imagenes/animal.jpg"
+                                class="sticker-img"><span>animales</span></div>
+                        <div class="sticker-item"><img src="imagenes/deporte.jpg"
+                                class="sticker-img"><span>Deportes</span></div>
+                    </div>
+                </div>
+
+                <!--Widget Obra del Mes-->
+                <div class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">Obra del Mes</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body text-center">
+                        <img src="imagenes/manga_noragami.jpg" class="shrine-cover" alt="Noragami">
+                        <p class="shrine-title">Noragami</p>
+                        <small class="mood-sub">«El manga que siempre vuelvo a releer»</small>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!--Columna 2 (centro): Reseñas,etc-->
+            <main class="col-main">
+
+                <!--Saluda aleatorio JavaScript-->
+                <article class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">Bienvenidoss</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body">
+                        <!-- El texto de este párrafo se rellenará automáticamente desde script.js -->
+                        <p id="greeting-dynamic" class="greeting-highlight">Cargando mensaje...</p>
+
+                    </div>
+                </article>
+
+                <!--Entrada de blog: Reseñas-->
+                <article class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">Reseñas y Colección</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body">
+                        <div class="review-layout">
+                            <div class="review-badge-header">
+                                <span class="post-tag">Categoría: Coleccionables</span>
+                                <span class="review-date">Agosto 2026</span>
+                            </div>
+                            <h2 class="post-title">Primeras impresiones &starf;</h2>
+
+                            <div class="review-rating">Calificación: &starf;&starf;&starf;&starf;&starf;</div>
+
+                            <!-- Layout horizontal: Portada + Texto descriptivo -->
+                            <div class="review-hero">
+                                <img src="imagenes/manga_ao_haru.jpg" class="review-cover-img" alt="Portada Reseña">
+
+                                <p class="post-desc">
+                                    Esta semana ordené mi colección y sumé nuevas piezas a mi rincón personal. Encontré
+                                    unos mangas de increíble calidad y la portada es hermosa; aún no los leo, pero me
+                                    emociona mucho empezar.
+                                </p>
+                            </div>
+
+                            <!--tabla de lo bueno / malo-->
+                            <div class="pros-cons-grid">
+                                <div class="pros-box">
+                                    <strong>Lo Mejor:</strong>
+                                    <ul>
+                                        <li>Dibujos claros y portada linda.</li>
+                                        <li>Papel de alta densidad en los tomos físicos.</li>
+                                    </ul>
+                                </div>
+                                <div class="cons-box">
+                                    <strong>A Mejorar:</strong>
+                                    <ul>
+                                        <li>Pudo llegar más protegido con papel burbuja.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <blockquote class="retro-quote">
+                                «Coleccionar es preservar un pedacito de arte en tu propia habitación.»
+                            </blockquote>
+
+                        </div>
+                    </div>
+                </article>
+
+                <!--Libro de visitas-->
+                <article class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">&hearts; Guestbook / Libro de Visitas</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body">
+                        <p class="guest-desc">Deja un saludo o tu opinión sobre nosotros:</p>
+
+                        <form id="form-guestbook" class="guestbook-form">
+                            <input type="text" id="guest-name" placeholder="Tu apodo / Nombre" required class="retro-input">
+                            <textarea id="guest-msg" placeholder="Escribe tu mensaje aquí..." rows="2" required class="retro-input"></textarea>
+                            <button type="submit" class="btn-action">Firmar Libro</button>
+                        </form>
+
+                        <hr class="retro-hr">
+
+                        <!-- Contenedor con scroll donde JavaScript insertará los comentarios -->
+                        <!-- Contenedor donde JS insertará los comentarios con su hora -->
+                        <div id="guestbook-messages" class="scroll-box"></div>
+                    </div>
+                </article>
+            </main>
+
+            <!--Columna 3 (derecha):reloj, mascota, musica y contador-->
+            <aside class="col-side">
+                <!--Reloj digital-->
+                <div class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">Hora Local</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+
+                    </div>
+                    <div class="win-body text-center">
+                        <!-- El reloj se actualiza cada segundo mediante JavaScript -->
+                        <div id="live-clock" class="digital-clock">00:00:00</div>
+                        <span class="status-badge">° Online</span>
+
+                        <div class="hit-counter-box">
+                            <small>Visitas al rincón: </small>
+                            <div id="hit-counter" class="hit-counter-display">000000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--reproductor music-->
+                <div class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">Music Player</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body text-center">
+                        <!-- Elemento de audio Lo-Fi relajante -->
+                        <audio id="audio-lofi" src="audio/musica_chill.mp3" preload="none" loop></audio>
+                        <div class="player-disc" id="player-disc">💿</div>
+                        <div class="player-track">Lo-Fi Chill & Beats</div>
+                        <div class="player-progress"><div class="progress-bar" id="progress-bar"></div></div>
+                        <button id="btn-play-music" class="btn-action btn-music">▶ Reproducir</button>
+                    </div>
+                </div>
+
+                <!--Mascota virtual-->
+                <div class="retro-window">
+                    <div class="win-header">
+                        <span class="win-title">Gato</span>
+                        <div class="win-controls"><span>-</span><span>□</span><span>×</span></div>
+                    </div>
+                    <div class="win-body text-center">
+                        <img src="imagenes/gatoo.png" alt="Mascota Virtual" id="pet-avatar" class="pet-image">
+                        <p class="pet-counter">Cariño: <strong id="pet-count">0</strong></p>
+                        <p id="cat-mood" class="pet-mood-text"></p>
+                        <button id="btn-pet" class="btn-action">¡Acariciar gato!</button>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+        <!--Pie de pág blog-->
+        <footer class="retro-footer">
+            <p>Hecho con ♥ para Fullstack II | Hobic • <a href="#top">Subir ↑</a></p>
+        </footer>
+    </div>
+    <!--Enlace al javaScript-->
+    <script src="blog.js"></script>
+
+
 </body>
 
 </html>
