@@ -556,6 +556,7 @@ button,
     letter-spacing: 1.5px;
     background: linear-gradient(90deg, #ffffff 0%, #ff7eb3 50%, var(--brand-pink) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
     display: inline-block;
