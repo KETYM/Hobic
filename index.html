@@ -188,43 +188,48 @@
         </section>
 
 
-        <!-- SECCIÓN 4 -->
-        <section class="contenedor">
-            <section class="contenedor">
-                <h2>Promos</h2>
-
-                <!-- CONTENEDOR FLEX PARA ALINEAR HORIZONTALMENTE -->
-                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px;">
-
-                    <!-- TARJETA 1 -->
-                    <div class="tarjeta" style="text-align: center;">
-                        <h3>Halo</h3>
-                        <img src="imagenes/halo.jpg" alt="Halo" class="img-fluid"
-                            style="max-height: 180px; object-fit: contain; margin: 10px auto;">
-                        <p>Precio: $15.990</p>
-                        <button class="btn-comprar-promo">Comprar</button>
+        <!-- SECCIÓN 4: PROMOS DESTACADAS -->
+        <section class="contenedor seccion-promos">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0 fs-3 fw-bold">Promos Destacadas</h2>
+                <span class="badge bg-danger px-3 py-2">Ofertas por tiempo limitado</span>
+            </div>
+            
+            <div class="grilla-promos">
+                <!-- TARJETA 1 -->
+                <div class="tarjeta-promo">
+                    <span class="tag-promo">-20% OFF</span>
+                    <div class="img-contenedor">
+                        <img src="imagenes/halo.jpg" alt="Halo Infinite">
                     </div>
-
-                    <!-- TARJETA 2 -->
-                    <div class="tarjeta" style="text-align: center;">
-                        <h3>Gears of War</h3>
-                        <img src="imagenes/gow.jpg" alt="Gears" class="img-fluid"
-                            style="max-height: 180px; object-fit: contain; margin: 10px auto;">
-                        <p>Precio: $12.990</p>
-                        <button class="btn-comprar-promo">Comprar</button>
-                    </div>
-
-                    <!-- TARJETA 3 -->
-                    <div class="tarjeta" style="text-align: center;">
-                        <h3>Forza Horizon</h3>
-                        <img src="imagenes/fh6.jpg" alt="Forza" class="img-fluid"
-                            style="max-height: 180px; object-fit: contain; margin: 10px auto;">
-                        <p>Precio: $29.990</p>
-                        <button class="btn-comprar-promo">Comprar</button>
-                    </div>
-
+                    <h3>Halo Infinite</h3>
+                    <p class="precio-promo">$15.990 <span class="precio-antiguo">$19.990</span></p>
+                    <button class="btn-comprar-promo">Añadir al carrito</button>
                 </div>
-            </section>
+                
+                <!-- TARJETA 2 -->
+                <div class="tarjeta-promo">
+                    <span class="tag-promo">-35% OFF</span>
+                    <div class="img-contenedor">
+                        <img src="imagenes/gow.jpg" alt="Gears of War">
+                    </div>
+                    <h3>Gears of War</h3>
+                    <p class="precio-promo">$12.990 <span class="precio-antiguo">$19.990</span></p>
+                    <button class="btn-comprar-promo">Añadir al carrito</button>
+                </div>
+                
+                <!-- TARJETA 3 -->
+                <div class="tarjeta-promo">
+                    <span class="tag-promo">-15% OFF</span>
+                    <div class="img-contenedor">
+                        <img src="imagenes/fh6.jpg" alt="Forza Horizon">
+                    </div>
+                    <h3>Forza Horizon</h3>
+                    <p class="precio-promo">$29.990 <span class="precio-antiguo">$34.990</span></p>
+                    <button class="btn-comprar-promo">Añadir al carrito</button>
+                </div>
+            </div>
+        </section>
 
     </main>
 
