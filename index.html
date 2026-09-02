@@ -31,7 +31,8 @@
 
         <!-- SECCIÓN 1: QUIÉNES SOMOS -->
         <section class="container my-5">
-            <div class="card shadow-sm p-4 border-0" style="background-color: #ffffff; border-left: 5px solid #6366f1 !important; border-radius: 10px;">
+            <div class="card shadow-sm p-4 border-0"
+                style="background-color: #ffffff; border-left: 5px solid #6366f1 !important; border-radius: 10px;">
                 <div class="mb-3">
                     <h2 class="fw-bold mb-3 text-center" style="font-size: 1.4rem;">Quiénes somos</h2>
                     <p class="text-secondary" style="font-size: 15px; line-height: 1.6; text-align: justify;">
@@ -43,14 +44,15 @@
                 </div>
                 <div class="d-flex justify-content-end mt-2">
                     <a href="https://wa.me/56912345678?text=Hola,%20tengo%20una%20duda%20sobre%20un%20producto"
-                        target="_blank" class="btn text-white px-4" style="background-color: #6366f1; border-radius: 6px; font-weight: 600;">
+                        target="_blank" class="btn text-white px-4"
+                        style="background-color: #6366f1; border-radius: 6px; font-weight: 600;">
                         Contáctanos
                     </a>
                 </div>
             </div>
         </section>
         <!-- SECCION 2 :EXPLORA POR CATEGORÍA -->
-        
+
         <section class="container my-5">
             <div class="d-flex justify-content-center align-items-center mb-4 mt-4">
                 <h2 class="titulo-catalogo mb-0 text-center" style="font-size: 24px;">EXPLORA NUESTROS UNIVERSOS</h2>
@@ -149,49 +151,77 @@
         </section>
 
 
-        <!-- SECCIÓN 4: PROMOS DESTACADAS -->
-        <section class="contenedor seccion-promos">
+  <!-- SECCIÓN 4: PROMOS DESTACADAS -->
+        <section class="contenedor seccion-promos position-relative">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="mb-0 fs-3 fw-bold">Promos Destacadas</h2>
                 <span class="badge bg-danger px-3 py-2">Ofertas por tiempo limitado</span>
             </div>
             
-            <div class="grilla-promos">
-                <!-- TARJETA 1 -->
-                <div class="tarjeta-promo">
-                    <span class="tag-promo">-20% OFF</span>
-                    <div class="img-contenedor">
-                        <img src="imagenes/halo.jpg" alt="Halo Infinite">
-                    </div>
-                    <h3>Halo Infinite</h3>
-                    <p class="precio-promo">$15.990 <span class="precio-antiguo">$19.990</span></p>
-                    <button class="btn-comprar-promo">Añadir al carrito</button>
-                </div>
+            <!-- Contenedor del Carrusel con Botones -->
+            <div class="position-relative">
                 
-                <!-- TARJETA 2 -->
-                <div class="tarjeta-promo">
-                    <span class="tag-promo">-35% OFF</span>
-                    <div class="img-contenedor">
-                        <img src="imagenes/gow.jpg" alt="Gears of War">
+                <!-- Botón Izquierdo -->
+                <button id="btn-prev-promo" class="btn btn-light position-absolute start-0 top-50 translate-middle-y z-3 rounded-circle shadow d-flex justify-content-center align-items-center" style="width: 45px; height: 45px; left: -20px !important; border: 1px solid #ddd;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+
+                <!-- Grilla de productos (Scroll oculto) -->
+                <div class="grilla-promos d-flex gap-4 py-3" id="contenedor-promos-inicio" style="overflow-x: auto; flex-wrap: nowrap; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;">
+                    
+                    <style>
+                        /* Oculta la barra de scroll en Chrome/Safari/Edge */
+                        #contenedor-promos-inicio::-webkit-scrollbar { display: none; }
+                    </style>
+
+<!-- TARJETA 1 ESTÁTICA -->
+                    <div class="tarjeta-promo" style="flex: 0 0 auto; width: 220px;">
+                        <span class="tag-promo">-20% OFF</span>
+                        <a href="catalogo.html" style="text-decoration: none; color: inherit;">
+                            <div class="img-contenedor">
+                                <img src="imagenes/halo.jpg" alt="Halo Infinite" style="width: 100%; height: 180px; object-fit: contain;">
+                            </div>
+                            <h3>Halo Infinite</h3>
+                        </a>
+                        <p class="precio-promo">$15.990 <span class="precio-antiguo text-decoration-line-through text-muted">$19.990</span></p>
+                        <button class="btn-comprar-promo" data-nombre="Halo Infinite" data-precio="15990" data-imagen="imagenes/halo.jpg">Añadir al carrito</button>
                     </div>
-                    <h3>Gears of War</h3>
-                    <p class="precio-promo">$12.990 <span class="precio-antiguo">$19.990</span></p>
-                    <button class="btn-comprar-promo">Añadir al carrito</button>
-                </div>
-                
-                <!-- TARJETA 3 -->
-                <div class="tarjeta-promo">
-                    <span class="tag-promo">-15% OFF</span>
-                    <div class="img-contenedor">
-                        <img src="imagenes/fh6.jpg" alt="Forza Horizon">
+                    
+                    <!-- TARJETA 2 ESTÁTICA -->
+                    <div class="tarjeta-promo" style="flex: 0 0 auto; width: 220px;">
+                        <span class="tag-promo">-35% OFF</span>
+                        <a href="catalogo.html" style="text-decoration: none; color: inherit;">
+                            <div class="img-contenedor">
+                                <img src="imagenes/gow.jpg" alt="Gears of War" style="width: 100%; height: 180px; object-fit: contain;">
+                            </div>
+                            <h3>Gears of War</h3>
+                        </a>
+                        <p class="precio-promo">$12.990 <span class="precio-antiguo text-decoration-line-through text-muted">$19.990</span></p>
+                        <button class="btn-comprar-promo" data-nombre="Gears of War" data-precio="12990" data-imagen="imagenes/gow.jpg">Añadir al carrito</button>
                     </div>
-                    <h3>Forza Horizon</h3>
-                    <p class="precio-promo">$29.990 <span class="precio-antiguo">$34.990</span></p>
-                    <button class="btn-comprar-promo">Añadir al carrito</button>
+                    
+                    <!-- TARJETA 3 ESTÁTICA -->
+                    <div class="tarjeta-promo" style="flex: 0 0 auto; width: 220px;">
+                        <span class="tag-promo">-15% OFF</span>
+                        <a href="catalogo.html" style="text-decoration: none; color: inherit;">
+                            <div class="img-contenedor">
+                                <img src="imagenes/fh6.jpg" alt="Forza Horizon" style="width: 100%; height: 180px; object-fit: contain;">
+                            </div>
+                            <h3>Forza Horizon</h3>
+                        </a>
+                        <p class="precio-promo">$29.990 <span class="precio-antiguo text-decoration-line-through text-muted">$34.990</span></p>
+                        <button class="btn-comprar-promo" data-nombre="Forza Horizon" data-precio="29990" data-imagen="imagenes/fh6.jpg">Añadir al carrito</button>
+                    </div>
+
                 </div>
+
+                <!-- Botón Derecho -->
+                <button id="btn-next-promo" class="btn btn-light position-absolute end-0 top-50 translate-middle-y z-3 rounded-circle shadow d-flex justify-content-center align-items-center" style="width: 45px; height: 45px; right: -20px !important; border: 1px solid #ddd;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+
             </div>
         </section>
-
     </main>
 
 
@@ -199,7 +229,7 @@
         <p>&copy; 2026 Hobic - Todos los derechos reservados</p>
     </footer>
 
-<script src="header.js"></script>
+    <script src="header.js"></script>
     <script src="auth.js"></script>
     <script src="carrito.js"></script>
     <script src="main.js"></script>
