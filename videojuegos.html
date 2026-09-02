@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<link rel="stylesheet" href="style.css">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mangas</title>
+    <!-- Cambié el título a Videojuegos para que coincida con la sección -->
+    <title>Videojuegos - Hobic</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
- <header id="main-header" style="position: relative;"></header>
+    <header id="main-header" style="position: relative;"></header>
     <main class="container my-5">
-<div class="d-flex justify-content-center align-items-center mb-5 mt-4">
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#e0006c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="me-3" style="margin-top: 8px;">
-        <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-        <path d="M6 12h4"></path>
-        <path d="M8 10v4"></path>
-        <line x1="15" y1="13" x2="15.01" y2="13"></line>
-        <line x1="18" y1="11" x2="18.01" y2="11"></line>
-    </svg>
-    <h1 class="titulo-catalogo mb-0">ZONA GAMER</h1>
-</div>
+        <div class="d-flex justify-content-center align-items-center mb-5 mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                stroke="#e0006c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="me-3"
+                style="margin-top: 8px;">
+                <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                <path d="M6 12h4"></path>
+                <path d="M8 10v4"></path>
+                <line x1="15" y1="13" x2="15.01" y2="13"></line>
+                <line x1="18" y1="11" x2="18.01" y2="11"></line>
+            </svg>
+            <h1 class="titulo-catalogo mb-0">ZONA GAMER</h1>
+        </div>
+
         <div class="row g-4">
+            <!-- TARJETA 1: NFS -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-light position-relative">
-
-                    <!-- la imagen -->
                     <a href="nfs.html" class="text-decoration-none">
                         <div class="bg-light d-flex justify-content-center align-items-center p-3"
                             style="height: 200px;">
-                            <img src="imagenes\nfs.jpg" class="img-fluid" style="max-height: 100%; object-fit: contain;"
-                                alt="Portada de Libro">
+                            <img src="imagenes/nfs.jpg" class="img-fluid" style="max-height: 100%; object-fit: contain;"
+                                alt="Need for Speed">
                         </div>
                     </a>
-                    <!-- Cuerpo de la tarjeta -->
                     <div class="card-body d-flex flex-column pb-5">
-                        <small class="fw-bold text-dark" style="font-size: 12px;">NFS</small>
-
-                        <!-- 2. ENLACE EN EL TÍTULO -->
+                        <small class="fw-bold text-primary text-uppercase" style="font-size: 12px;">Videojuego</small>
                         <a href="nfs.html" class="text-decoration-none">
                             <h6 class="card-title text-secondary mt-2 mb-3 flex-grow-1">Need for Speed</h6>
                         </a>
@@ -53,8 +51,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Botón circular usando clases de Bootstrap (btn, btn-dark, rounded-circle) -->
                     <button
                         class="btn btn-dark rounded-circle position-absolute d-flex justify-content-center align-items-center p-0"
                         style="bottom: 15px; right: 15px; width: 40px; height: 40px; transition: transform 0.2s;">
@@ -67,28 +63,22 @@
                     </button>
                 </div>
             </div>
-            <!-- TARJETA 2 -->
+
+            <!-- TARJETA 2: HALO -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-light position-relative">
-
-                    <!-- 1. ENLACE EN LA IMAGEN -->
                     <a href="halo.html" class="text-decoration-none">
                         <div class="bg-light d-flex justify-content-center align-items-center p-3"
                             style="height: 200px;">
-                            <img src="imagenes\halo.jpg" class="img-fluid"
-                                style="max-height: 100%; object-fit: contain;" alt="Portada de Libro">
+                            <img src="imagenes/halo.jpg" class="img-fluid"
+                                style="max-height: 100%; object-fit: contain;" alt="Halo">
                         </div>
                     </a>
-
                     <div class="card-body d-flex flex-column pb-5">
-                        <small class="fw-bold text-dark" style="font-size: 12px;">Halo</small>
-
-                        <!-- 2. ENLACE EN EL TÍTULO (Este sí lo tenías bien) -->
+                        <small class="fw-bold text-primary text-uppercase" style="font-size: 12px;">Videojuego</small>
                         <a href="halo.html" class="text-decoration-none">
-                            <h6 class="card-title text-secondary mt-2 mb-3 flex-grow-1">Halo
-                            </h6>
+                            <h6 class="card-title text-secondary mt-2 mb-3 flex-grow-1">Halo</h6>
                         </a>
-
                         <div>
                             <span class="text-decoration-line-through text-muted"
                                 style="font-size: 13px;">$18.990</span>
@@ -98,7 +88,43 @@
                             </div>
                         </div>
                     </div>
+                    <button
+                        class="btn btn-dark rounded-circle position-absolute d-flex justify-content-center align-items-center p-0"
+                        style="bottom: 15px; right: 15px; width: 40px; height: 40px; transition: transform 0.2s;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
+            <!-- TARJETA 3: FORZA HORIZON 6 (NUEVA) -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 shadow-sm border-light position-relative">
+                    <a href="forzahorizon6.html" class="text-decoration-none">
+                        <div class="bg-light d-flex justify-content-center align-items-center p-3"
+                            style="height: 200px;">
+                            <img src="imagenes/fh6.jpg" class="img-fluid" style="max-height: 100%; object-fit: contain;"
+                                alt="Forza Horizon 6">
+                        </div>
+                    </a>
+                    <div class="card-body d-flex flex-column pb-5">
+                        <small class="fw-bold text-primary text-uppercase" style="font-size: 12px;">Videojuego</small>
+                        <a href="forzahorizon6.html" class="text-decoration-none">
+                            <h6 class="card-title text-secondary mt-2 mb-3 flex-grow-1">Forza Horizon 6</h6>
+                        </a>
+                        <div>
+                            <span class="text-decoration-line-through text-muted"
+                                style="font-size: 13px;">$34.990</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fs-5 fw-bold text-dark">$29.990</span>
+                                <span class="badge" style="background-color: #e0006c;">-14%</span>
+                            </div>
+                        </div>
+                    </div>
                     <button
                         class="btn btn-dark rounded-circle position-absolute d-flex justify-content-center align-items-center p-0"
                         style="bottom: 15px; right: 15px; width: 40px; height: 40px; transition: transform 0.2s;">
@@ -114,10 +140,10 @@
 
         </div>
     </main>
-        <footer>
+    <footer>
         <p>&copy; 2026 Hobic - Todos los derechos reservados</p>
     </footer>
-<script src="header.js"></script>
+    <script src="header.js"></script>
     <script src="auth.js"></script>
     <script src="carrito.js"></script>
     <script src="main.js"></script>
