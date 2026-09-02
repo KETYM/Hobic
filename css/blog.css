@@ -87,47 +87,89 @@ body.pattern-checker {
 
 /*3. barra superior*/
 .main-site-header {
-    background: var(--nav-bar-bg);
-    border-bottom: 2px solid var(--nav-border);
-    padding: 10px 20px;
-    margin-bottom: 20px;
+    background: #0f172a !important; /* Azul marino profundo idéntico al Header global */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 4px 20px !important;
+    margin-bottom: 25px;
+    width: 100%;
 }
 
 .top-nav {
-    max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 15px;
+}
+
+.top-nav > a > svg {
+    height: 36px !important;
+    width: auto !important;
+}
+
+.nav-links {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
-    font-weight: bold;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .nav-links a {
-    color: var(--text-main);
+    color: #cbd5e1 !important;
     text-decoration: none;
-    padding: 0 4px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 10px !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links .nav-active {
-    color: var(--text-accent);
-    text-decoration: underline;
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    text-decoration: none !important;
 }
 
 .nav-derecha {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
-.nav-user-btn,
-.nav-cart-btn {
-    color: var(--text-main);
-    text-decoration: none;
+.nav-user-btn {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.08);
+    transition: background-color 0.2s ease;
+}
+
+.nav-user-btn:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.nav-cart-btn {
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.nav-cart-btn:hover {
+    transform: scale(1.08);
 }
 
 /*4.marco y banner*/

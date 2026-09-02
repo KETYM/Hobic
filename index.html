@@ -29,36 +29,28 @@
 
     <main>
 
-        <!-- SECCIÓN 1 -->
-        <!-- SECCIÓN QUIÉNES SOMOS -->
+        <!-- SECCIÓN 1: QUIÉNES SOMOS -->
         <section class="container my-5">
-            <!-- Aquí agregamos el color de fondo crema claro -->
-            <div class="card shadow-sm border-light p-4" style="background-color: #f9f1ca;">
-
+            <div class="card shadow-sm p-4 border-0" style="background-color: #ffffff; border-left: 5px solid #6366f1 !important; border-radius: 10px;">
                 <div class="mb-3">
-                    <!-- Título centrado -->
-                    <h2 class="fw-bold mb-3 text-center">Quienes somos</h2>
-
-                    <!-- Texto justificado -->
-                    <p class="text-secondary" style="font-size: 16px; line-height: 1.6; text-align: justify;">
+                    <h2 class="fw-bold mb-3 text-center" style="font-size: 1.4rem;">Quiénes somos</h2>
+                    <p class="text-secondary" style="font-size: 15px; line-height: 1.6; text-align: justify;">
                         Hobic es una tienda online especializada en la venta de productos relacionados con el mundo del
                         entretenimiento, incluyendo libros, series, videojuegos y mangas. Nuestro objetivo es ofrecer a
                         nuestros clientes una experiencia de compra única y satisfactoria, brindando productos de
                         calidad y un servicio excepcional.
                     </p>
                 </div>
-
-                <!-- Botón alineado a la derecha -->
                 <div class="d-flex justify-content-end mt-2">
                     <a href="https://wa.me/56912345678?text=Hola,%20tengo%20una%20duda%20sobre%20un%20producto"
-                        target="_blank" class="btn text-white px-4" style="background-color: #2563eb;">
+                        target="_blank" class="btn text-white px-4" style="background-color: #6366f1; border-radius: 6px; font-weight: 600;">
                         Contáctanos
                     </a>
                 </div>
-
             </div>
         </section>
         <!-- SECCION 2 :EXPLORA POR CATEGORÍA -->
+        
         <section class="container my-5">
             <div class="d-flex justify-content-center align-items-center mb-4 mt-4">
                 <h2 class="titulo-catalogo mb-0 text-center" style="font-size: 24px;">EXPLORA NUESTROS UNIVERSOS</h2>
@@ -157,43 +149,48 @@
         </section>
 
 
-        <!-- SECCIÓN 4 -->
-        <section class="contenedor">
-            <section class="contenedor">
-                <h2>Promos</h2>
-
-                <!-- CONTENEDOR FLEX PARA ALINEAR HORIZONTALMENTE -->
-                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px;">
-
-                    <!-- TARJETA 1 -->
-                    <div class="tarjeta" style="text-align: center;">
-                        <h3>Halo</h3>
-                        <img src="imagenes/halo.jpg" alt="Halo" class="img-fluid"
-                            style="max-height: 180px; object-fit: contain; margin: 10px auto;">
-                        <p>Precio: $15.990</p>
-                        <button class="btn-comprar-promo">Comprar</button>
+        <!-- SECCIÓN 4: PROMOS DESTACADAS -->
+        <section class="contenedor seccion-promos">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0 fs-3 fw-bold">Promos Destacadas</h2>
+                <span class="badge bg-danger px-3 py-2">Ofertas por tiempo limitado</span>
+            </div>
+            
+            <div class="grilla-promos">
+                <!-- TARJETA 1 -->
+                <div class="tarjeta-promo">
+                    <span class="tag-promo">-20% OFF</span>
+                    <div class="img-contenedor">
+                        <img src="imagenes/halo.jpg" alt="Halo Infinite">
                     </div>
-
-                    <!-- TARJETA 2 -->
-                    <div class="tarjeta" style="text-align: center;">
-                        <h3>Gears of War</h3>
-                        <img src="imagenes/gow.jpg" alt="Gears" class="img-fluid"
-                            style="max-height: 180px; object-fit: contain; margin: 10px auto;">
-                        <p>Precio: $12.990</p>
-                        <button class="btn-comprar-promo">Comprar</button>
-                    </div>
-
-                    <!-- TARJETA 3 -->
-                    <div class="tarjeta" style="text-align: center;">
-                        <h3>Forza Horizon</h3>
-                        <img src="imagenes/fh6.jpg" alt="Forza" class="img-fluid"
-                            style="max-height: 180px; object-fit: contain; margin: 10px auto;">
-                        <p>Precio: $29.990</p>
-                        <button class="btn-comprar-promo">Comprar</button>
-                    </div>
-
+                    <h3>Halo Infinite</h3>
+                    <p class="precio-promo">$15.990 <span class="precio-antiguo">$19.990</span></p>
+                    <button class="btn-comprar-promo">Añadir al carrito</button>
                 </div>
-            </section>
+                
+                <!-- TARJETA 2 -->
+                <div class="tarjeta-promo">
+                    <span class="tag-promo">-35% OFF</span>
+                    <div class="img-contenedor">
+                        <img src="imagenes/gow.jpg" alt="Gears of War">
+                    </div>
+                    <h3>Gears of War</h3>
+                    <p class="precio-promo">$12.990 <span class="precio-antiguo">$19.990</span></p>
+                    <button class="btn-comprar-promo">Añadir al carrito</button>
+                </div>
+                
+                <!-- TARJETA 3 -->
+                <div class="tarjeta-promo">
+                    <span class="tag-promo">-15% OFF</span>
+                    <div class="img-contenedor">
+                        <img src="imagenes/fh6.jpg" alt="Forza Horizon">
+                    </div>
+                    <h3>Forza Horizon</h3>
+                    <p class="precio-promo">$29.990 <span class="precio-antiguo">$34.990</span></p>
+                    <button class="btn-comprar-promo">Añadir al carrito</button>
+                </div>
+            </div>
+        </section>
 
     </main>
 
