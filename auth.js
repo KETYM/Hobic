@@ -85,8 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnLoginAdmin = document.getElementById("btn-login-admin");
     if (btnLoginAdmin) {
         btnLoginAdmin.addEventListener("click", function () {
-            // Pre-llena el correo pero exige la contraseña
-            document.getElementById("email").value = "admin@hobic.cl";
+            document.getElementById("email").value = "";
             document.getElementById("password").value = ""; 
             document.getElementById("password").focus(); 
             
