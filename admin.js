@@ -29,41 +29,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // 2. INICIALIZAR INVENTARIO BASE
+    // 2. INICIALIZAR INVENTARIO BASE (CON PROMOS Y ATRIBUTOS)
     let inventario = JSON.parse(localStorage.getItem("inventarioHobic"));
     
-    if (!inventario || inventario.length <= 3) {
+    if (!inventario || inventario.length <= 3 || !inventario[0].hasOwnProperty("promo")) {
         inventario = [
             { 
-                id: 1, nombre: "Dune (Edición Especial)", categoria: "Libros", precio: 15990, stock: 15, imagen: "imagenes/dune.jpg",
+                id: 1, nombre: "Dune (Edición Especial)", categoria: "Libros", precio: 15990, stock: 15, imagen: "imagenes/dune.jpg", promo: false,
                 detalles: { attr1: "Frank Herbert", attr2: "Debolsillo", attr3: "704 págs.", attr4: "Español" }
             },
             { 
-                id: 2, nombre: "El Señor de los Anillos", categoria: "Libros", precio: 19990, stock: 10, imagen: "imagenes/sdla.jpg",
+                id: 2, nombre: "El Señor de los Anillos", categoria: "Libros", precio: 19990, stock: 10, imagen: "imagenes/sdla.jpg", promo: false,
                 detalles: { attr1: "J.R.R. Tolkien", attr2: "Minotauro", attr3: "576 págs.", attr4: "Español" }
             },
             { 
-                id: 3, nombre: "Spy x Family Vol. 1", categoria: "Mangas", precio: 19790, stock: 20, imagen: "imagenes/Spy.jpg",
+                id: 3, nombre: "Spy x Family Vol. 1", categoria: "Mangas", precio: 19790, stock: 20, imagen: "imagenes/Spy.jpg", promo: false,
                 detalles: { attr1: "Tatsuya Endo", attr2: "Editorial Ivrea", attr3: "9 capítulos", attr4: "Español" }
             },
             { 
-                id: 4, nombre: "Your Name Vol. 3", categoria: "Mangas", precio: 15990, stock: 12, imagen: "imagenes/YourName.jpg",
+                id: 4, nombre: "Your Name Vol. 3", categoria: "Mangas", precio: 15990, stock: 12, imagen: "imagenes/YourName.jpg", promo: true,
                 detalles: { attr1: "Makoto Shinkai", attr2: "Planeta Cómic", attr3: "Tomo único", attr4: "Español" }
             },
             { 
-                id: 5, nombre: "Samurai X", categoria: "Series", precio: 19790, stock: 8, imagen: "imagenes/samurai.jpg",
+                id: 5, nombre: "Samurai X", categoria: "Series", precio: 19790, stock: 8, imagen: "imagenes/samurai.jpg", promo: false,
                 detalles: { attr1: "Nobuhiro Watsuki", attr2: "Studio Gallop", attr3: "95 capítulos", attr4: "Español latino" }
             },
             { 
-                id: 6, nombre: "Neon Genesis Evangelion", categoria: "Series", precio: 15990, stock: 5, imagen: "imagenes/evangelion.jpg",
+                id: 6, nombre: "Neon Genesis Evangelion", categoria: "Series", precio: 15990, stock: 5, imagen: "imagenes/evangelion.jpg", promo: false,
                 detalles: { attr1: "Hideaki Anno", attr2: "Gainax", attr3: "26 capítulos", attr4: "Español latino" }
             },
             { 
-                id: 7, nombre: "Need for Speed Unbound", categoria: "Videojuegos", precio: 19790, stock: 18, imagen: "imagenes/nfs.jpg",
+                id: 7, nombre: "Need for Speed Unbound", categoria: "Videojuegos", precio: 19790, stock: 18, imagen: "imagenes/nfs.jpg", promo: false,
                 detalles: { attr1: "Criterion Games", attr2: "Electronic Arts", attr3: "PS5 / Xbox Series / PC", attr4: "Español" }
             },
             { 
-                id: 8, nombre: "Halo Infinite", categoria: "Videojuegos", precio: 15990, stock: 15, imagen: "imagenes/halo.jpg",
+                id: 8, nombre: "Halo Infinite", categoria: "Videojuegos", precio: 15990, stock: 15, imagen: "imagenes/halo.jpg", promo: true,
                 detalles: { attr1: "343 Industries", attr2: "Xbox Game Studios", attr3: "Xbox One / Series / PC", attr4: "Español" }
             }
         ];
@@ -79,6 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputPrecio = document.getElementById("crud-precio");
     const inputStock = document.getElementById("crud-stock");
     const inputImagen = document.getElementById("crud-imagen");
+    const checkPromo = document.getElementById("crud-promo");
+    const textoImagenActual = document.getElementById("texto-imagen-actual");
     const btnCancelar = document.getElementById("btn-cancelar-crud");
     const tituloForm = document.getElementById("form-titulo");
 
@@ -92,6 +94,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputAttr2 = document.getElementById("crud-attr2");
     const inputAttr3 = document.getElementById("crud-attr3");
     const inputAttr4 = document.getElementById("crud-attr4");
+
+    let imagenBase64 = "";
+
+    // Manejar subida de archivo (si es input type="file")
+    if (inputImagen && inputImagen.type === "file") {
+        inputImagen.addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagenBase64 = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 
     // 4. ACTUALIZAR CAMPOS SEGÚN CATEGORÍA SELECCIONADA
     function actualizarCamposDinamicos(categoria) {
@@ -111,21 +129,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (inputAttr4) inputAttr4.placeholder = esquema.attr4.placeholder;
     }
 
-    selectCategoria.addEventListener("change", (e) => {
-        actualizarCamposDinamicos(e.target.value);
-    });
+    if (selectCategoria) {
+        selectCategoria.addEventListener("change", (e) => {
+            actualizarCamposDinamicos(e.target.value);
+        });
+    }
 
-    // 5. RENDERIZAR TABLA
+    // 5. RENDERIZAR TABLA CON BADGES
     function renderizarTabla() {
+        if (!tablaInventario) return;
         tablaInventario.innerHTML = "";
         inventario.forEach((prod) => {
             const stockBadge = prod.stock <= 5 ? 'bg-danger' : 'bg-success';
+            const promoBadge = prod.promo ? `<span class="badge bg-warning text-dark ms-2">Promo</span>` : '';
             
             tablaInventario.innerHTML += `
                 <tr>
                     <td class="ps-4 d-flex align-items-center gap-3">
                         <img src="${prod.imagen}" alt="${prod.nombre}">
-                        <span class="fw-bold text-white">${prod.nombre}</span>
+                        <div>
+                            <span class="fw-bold text-white">${prod.nombre}</span>
+                            ${promoBadge}
+                        </div>
                     </td>
                     <td><span class="badge bg-secondary">${prod.categoria}</span></td>
                     <td>$${prod.precio.toLocaleString("es-CL")}</td>
@@ -140,40 +165,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 6. CREAR O ACTUALIZAR PRODUCTO
-    formCrud.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const idActual = inputId.value;
-        const nuevoProducto = {
-            id: idActual ? parseInt(idActual) : Date.now(),
-            nombre: inputNombre.value.trim(),
-            categoria: selectCategoria.value,
-            precio: parseInt(inputPrecio.value),
-            stock: parseInt(inputStock.value),
-            imagen: inputImagen.value.trim(),
-            detalles: {
-                attr1: inputAttr1 ? inputAttr1.value.trim() : "",
-                attr2: inputAttr2 ? inputAttr2.value.trim() : "",
-                attr3: inputAttr3 ? inputAttr3.value.trim() : "",
-                attr4: inputAttr4 ? inputAttr4.value.trim() : ""
+    if (formCrud) {
+        formCrud.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const idActual = inputId.value;
+            let imagenFinal = "imagenes/default.jpg";
+
+            if (inputImagen && inputImagen.type === "file") {
+                imagenFinal = imagenBase64 || (idActual ? inventario.find(p => p.id === parseInt(idActual))?.imagen : "imagenes/default.jpg");
+            } else if (inputImagen) {
+                imagenFinal = inputImagen.value.trim();
             }
-        };
 
-        if (idActual) {
-            const index = inventario.findIndex(p => p.id === parseInt(idActual));
-            inventario[index] = nuevoProducto;
-            alert("Producto actualizado correctamente.");
-        } else {
-            inventario.push(nuevoProducto);
-            alert("Producto agregado al inventario.");
-        }
+            const nuevoProducto = {
+                id: idActual ? parseInt(idActual) : Date.now(),
+                nombre: inputNombre.value.trim(),
+                categoria: selectCategoria.value,
+                precio: parseInt(inputPrecio.value),
+                stock: parseInt(inputStock.value),
+                imagen: imagenFinal,
+                promo: checkPromo ? checkPromo.checked : false,
+                detalles: {
+                    attr1: inputAttr1 ? inputAttr1.value.trim() : "",
+                    attr2: inputAttr2 ? inputAttr2.value.trim() : "",
+                    attr3: inputAttr3 ? inputAttr3.value.trim() : "",
+                    attr4: inputAttr4 ? inputAttr4.value.trim() : ""
+                }
+            };
 
-        guardarYRecargar();
-    });
+            if (idActual) {
+                const index = inventario.findIndex(p => p.id === parseInt(idActual));
+                inventario[index] = nuevoProducto;
+                alert("Producto actualizado correctamente.");
+            } else {
+                inventario.push(nuevoProducto);
+                alert("Producto agregado al inventario.");
+            }
+
+            guardarYRecargar();
+        });
+    }
 
     // 7. FUNCIONES GLOBALES (Editar, Borrar, Cancelar)
     window.eliminarProducto = function(id) {
-        if (confirm("¿Estás seguro de eliminar este producto del stock?")) {
+        if (confirm("¿Estás seguro de eliminar este producto del inventario?")) {
             inventario = inventario.filter(p => p.id !== id);
             guardarYRecargar();
         }
@@ -189,7 +225,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             inputPrecio.value = producto.precio;
             inputStock.value = producto.stock;
-            inputImagen.value = producto.imagen;
+
+            if (checkPromo) checkPromo.checked = producto.promo || false;
+
+            if (inputImagen && inputImagen.type !== "file") {
+                inputImagen.value = producto.imagen;
+            } else if (textoImagenActual) {
+                textoImagenActual.textContent = "Imagen cargada. Sube una nueva si deseas reemplazarla.";
+                if (inputImagen) inputImagen.removeAttribute("required");
+                imagenBase64 = producto.imagen;
+            }
 
             if (producto.detalles) {
                 if (inputAttr1) inputAttr1.value = producto.detalles.attr1 || "";
@@ -213,22 +258,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (inputAttr4) inputAttr4.value = "";
     }
 
-    btnCancelar.addEventListener("click", () => {
-        formCrud.reset();
-        inputId.value = "";
-        limpiarAtributos();
-        actualizarCamposDinamicos(selectCategoria.value);
-        tituloForm.textContent = "Agregar Producto";
-        btnCancelar.classList.add("d-none");
-    });
+    if (btnCancelar) {
+        btnCancelar.addEventListener("click", () => {
+            formCrud.reset();
+            inputId.value = "";
+            imagenBase64 = "";
+            if (checkPromo) checkPromo.checked = false;
+            if (textoImagenActual) textoImagenActual.textContent = "";
+            if (inputImagen && inputImagen.type === "file") inputImagen.setAttribute("required", "true");
+            limpiarAtributos();
+            actualizarCamposDinamicos(selectCategoria.value);
+            tituloForm.textContent = "Agregar Producto";
+            btnCancelar.classList.add("d-none");
+        });
+    }
 
     function guardarYRecargar() {
         localStorage.setItem("inventarioHobic", JSON.stringify(inventario));
         renderizarTabla();
-        btnCancelar.click(); 
+        if (btnCancelar) btnCancelar.click(); 
     }
 
-    // Inicialización
-    actualizarCamposDinamicos(selectCategoria.value);
+    // Inicialización al cargar la página
+    if (selectCategoria) actualizarCamposDinamicos(selectCategoria.value);
     renderizarTabla();
 });

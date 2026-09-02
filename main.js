@@ -137,4 +137,59 @@ document.addEventListener("DOMContentLoaded", function () {
     buscadorCatalogo.dispatchEvent(new Event("input"));
     sessionStorage.removeItem("busquedaPendiente");
   }
+ // ==========================================
+  // 5. RENDERIZAR PROMOS DINÁMICAS Y CARRUSEL
+  // ==========================================
+  const contenedorPromos = document.getElementById("contenedor-promos-inicio");
+  
+  if (contenedorPromos) {
+      let inventario = JSON.parse(localStorage.getItem("inventarioHobic")) || [];
+      const promos = inventario.filter(p => p.promo === true);
+
+      // Inyectar tarjetas dinámicas usando el diseño original
+      promos.forEach(prod => {
+          contenedorPromos.innerHTML += `
+              <div class="tarjeta-promo" style="flex: 0 0 auto; width: 220px;">
+                  <span class="tag-promo" style="background-color: #043b7a;">¡DESTACADO!</span>
+                  <a href="catalogo.html" style="text-decoration: none; color: inherit;">
+                      <div class="img-contenedor">
+                          <img src="${prod.imagen}" alt="${prod.nombre}" style="width: 100%; height: 180px; object-fit: contain;">
+                      </div>
+                      <h3>${prod.nombre}</h3>
+                  </a>
+                  <p class="precio-promo">$${prod.precio.toLocaleString("es-CL")}</p>
+                  <button class="btn-comprar-promo" data-nombre="${prod.nombre}" data-precio="${prod.precio}" data-imagen="${prod.imagen}">Añadir al carrito</button>
+              </div>
+          `;
+      });
+
+      // Lógica de compra
+      document.querySelectorAll(".btn-comprar-promo").forEach(boton => {
+          boton.addEventListener("click", function(e) {
+              e.preventDefault();
+              
+              // Ahora lee directamente los valores ocultos del botón
+              let nombre = this.getAttribute("data-nombre");
+              let precio = parseInt(this.getAttribute("data-precio"));
+              let imagen = this.getAttribute("data-imagen");
+              
+              if (typeof window.agregarAlCarrito === "function") {
+                  window.agregarAlCarrito(nombre, precio, imagen);
+              }
+          });
+      });
+
+      // Lógica de las Flechas del Carrusel
+      const btnPrev = document.getElementById("btn-prev-promo");
+      const btnNext = document.getElementById("btn-next-promo");
+
+      if (btnPrev && btnNext) {
+          btnNext.addEventListener("click", () => {
+              contenedorPromos.scrollBy({ left: 240, behavior: 'smooth' });
+          });
+          btnPrev.addEventListener("click", () => {
+              contenedorPromos.scrollBy({ left: -240, behavior: 'smooth' });
+          });
+      }
+  }
 });

@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // ==========================================
+// ==========================================
   // 1. LÓGICA DEL CARRITO DINÁMICO (LocalStorage)
   // ==========================================
-  function agregarAlCarrito(nombre, precio, imagen) {
+  
+  // ¡LA SOLUCIÓN ESTÁ AQUÍ! Agregamos "window." para que otros archivos puedan usarla
+  window.agregarAlCarrito = function(nombre, precio, imagen) {
     let carrito = JSON.parse(localStorage.getItem("carritoHobic")) || [];
     let productoExistente = carrito.find((item) => item.nombre === nombre);
 
@@ -12,8 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
       carrito.push({ nombre: nombre, precio: precio, imagen: imagen, cantidad: 1 });
     }
     localStorage.setItem("carritoHobic", JSON.stringify(carrito));
-    alert(`¡Se agregó "${nombre}" a tu carrito!`);
-  }
+    
+    alert("Añadido a carrito de compra");
+  };
 
   const btnAgregarDetalle = document.getElementById("btn-agregar-carrito");
   if (btnAgregarDetalle) {
@@ -102,46 +105,38 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
  // ==========================================
-  // 2. LÓGICA DE LA PÁGINA DE PAGO
-  // ==========================================
+ // 2. LÓGICA DE LA PÁGINA DE PAGO
+ // ==========================================
   const formPago = document.getElementById("form-pago");
   const totalPagoElement = document.getElementById("total-pago");
 
-  // Si estamos en la página de pago, calcular el total real
   if (totalPagoElement) {
     let carrito = JSON.parse(localStorage.getItem("carritoHobic")) || [];
     let totalPlata = 0;
     
-    // Sumar el precio * cantidad de cada producto
     carrito.forEach((producto) => {
       totalPlata += producto.precio * producto.cantidad;
     });
 
-    // Actualizar el HTML con el formato de moneda chilena
     totalPagoElement.textContent = "$" + totalPlata.toLocaleString("es-CL");
 
-    // Opcional: Redirigir si el carrito está vacío para que no compren nada por $0
     if (carrito.length === 0) {
         alert("Tu carrito está vacío. Serás redirigido para que agregues productos.");
         window.location.href = "index.html";
     }
   }
 
-  // Lógica al hacer clic en "Confirmar y Pagar"
   if (formPago) {
     formPago.addEventListener("submit", function (e) {
       e.preventDefault(); 
       alert("¡Pago exitoso! Tu pedido está siendo procesado.\nGracias por comprar en Hobic.");
-      
-      // Vaciar el carrito después de comprar
       localStorage.removeItem("carritoHobic");
-      
       window.location.href = "index.html";
     });
   }
 
   // ==========================================
-  // 3. ICONOS GRISES EN CATÁLOGOS Y PROMOS
+  // 3. ICONOS GRISES EN CATÁLOGOS Y DETALLE
   // ==========================================
   const botonesAgregarCatalogo = document.querySelectorAll(".card .btn-dark.rounded-circle");
   if (botonesAgregarCatalogo.length > 0) {
@@ -157,30 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
           let precioTexto = precioEl ? precioEl.textContent.replace("$", "").replace(".", "").trim() : "0";
           let precio = parseInt(precioTexto);
           let imagen = imgEl ? imgEl.getAttribute("src") : "imagenes/default.jpg";
-          agregarAlCarrito(nombre, precio, imagen);
-        }
-      });
-    });
-  }
-
-  const botonesPromos = document.querySelectorAll(".btn-comprar-promo");
-  if (botonesPromos.length > 0) {
-    botonesPromos.forEach((boton) => {
-      boton.addEventListener("click", function (e) {
-        e.preventDefault(); 
-        const tarjeta = this.closest(".tarjeta");
-        if (tarjeta) {
-          const tituloEl = tarjeta.querySelector("h3");
-          const precioEl = tarjeta.querySelector("p"); 
-          const imgEl = tarjeta.querySelector("img");
-          let nombre = tituloEl ? tituloEl.textContent.trim() : "Producto Promo";
-          let precioTexto = "0";
-          if (precioEl) {
-            precioTexto = precioEl.textContent.replace("Precio:", "").replace("$", "").replace(".", "").trim();
-          }
-          let precio = parseInt(precioTexto);
-          let imagen = imgEl ? imgEl.getAttribute("src") : "imagenes/default.jpg";
-          
           agregarAlCarrito(nombre, precio, imagen);
         }
       });
