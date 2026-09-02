@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==========================================
+ // ==========================================
     // 3. LÓGICA DE INICIO DE SESIÓN
     // ==========================================
     const formLogin = document.getElementById("form-login");
@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
             const mensajeError = document.getElementById("mensaje-error");
+
+            // Asegurar que el color vuelva a ser rojo para los errores reales
+            mensajeError.style.color = "#dc2626";
 
             // Validar contra la base de datos simulada en lugar de datos quemados
             let usuarioValido = usuarios.find(u => u.correo === email && u.password === password);
@@ -75,19 +78,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 mensajeError.textContent = "Correo o contraseña incorrectos.";
                 mensajeError.style.display = "block";
             }
-            
         });
     }
-// Acceso rápido para el Administrador (Botón demo)
+// Acceso para el Administrador 
+ // Botón de Administrador Seguro
     const btnLoginAdmin = document.getElementById("btn-login-admin");
     if (btnLoginAdmin) {
         btnLoginAdmin.addEventListener("click", function () {
-            sessionStorage.setItem("usuarioActual", JSON.stringify({ 
-                rol: "admin", 
-                correo: "admin@hobic.cl", 
-                nombre: "Admin" 
-            }));
-            window.location.href = "admin.html";
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = ""; 
+            document.getElementById("password").focus(); 
+            
+            const mensajeError = document.getElementById("mensaje-error");
+            mensajeError.style.color = "#043b7a"; // Azul informativo
+            mensajeError.textContent = "Por favor, ingrese la contraseña de administrador.";
+            mensajeError.style.display = "block";
         });
     }
     // ==========================================
@@ -109,7 +114,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let usuarioExiste = usuarios.find((u) => u.correo === email);
             if (usuarioExiste) {
-                alert("Este correo ya está registrado.");
+                alert("Este correo ya está registrado. Por favor, ingrese otro correo.");
+                formRegistro.reset(); // Vacía todos los campos del formulario
                 return;
             }
 
@@ -134,5 +140,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "index.html";
             }
         }
+    }
+    // ==========================================
+    // 6. PROTECCIÓN DE LA PÁGINA DE LOGIN
+    // ==========================================
+    if (window.location.pathname.includes("inicioSesion.html") && usuarioGuardado) {
+        const usuario = JSON.parse(usuarioGuardado);
+        // Si ya está logueado, lo saca del login y lo manda a su área correspondiente
+        window.location.href = usuario.rol === "admin" ? "admin.html" : "index.html";
     }
 });
