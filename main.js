@@ -127,7 +127,9 @@ document.addEventListener("DOMContentLoaded", function () {
       btnAbrirSearch.addEventListener("click", function(e) {
           e.preventDefault();
           searchOverlay.classList.add("activo");
+          setTimeout(() => {
           inputSearchNav.focus(); 
+          }, 100);
       });
 
       btnCerrarSearch.addEventListener("click", function() {
