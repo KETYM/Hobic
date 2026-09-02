@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nuevoMensaje.className = "mb-2";
       nuevoMensaje.innerHTML = `
                 <span class="badge ${colorBadge} me-1">${nombreUsuario}</span>
-                <span class="text-dark">${texto}</span>
+                <span class="text-white">${texto}</span>
             `;
 
       cajaMensajes.appendChild(nuevoMensaje);
@@ -56,10 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (buscador && itemsCatalogo.length > 0) {
     botonesFiltro.forEach((boton) => {
       boton.addEventListener("click", function () {
-        botonesFiltro.forEach((b) => {
-          b.classList.remove("active");
-          this.classList.add("active");
-        });
+        botonesFiltro.forEach((b) => b.classList.remove("active"));
+        this.classList.add("active");
 
         const categoria = this.getAttribute("data-filtro");
         itemsCatalogo.forEach((item) => {
@@ -73,79 +71,59 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-// Filtrar escribiendo en el buscador
+    // Filtrar escribiendo en el buscador
     buscador.addEventListener("input", function () {
       const texto = this.value.toLowerCase().trim();
       let elementosVisibles = 0;
 
       itemsCatalogo.forEach((item) => {
         const titulo = item.querySelector(".card-title").textContent.toLowerCase();
-        const categoria = item.getAttribute("data-categoria").toLowerCase();
-        
+        const categoria = item.getAttribute("data-categoria") ? item.getAttribute("data-categoria").toLowerCase() : "";
+
         if (titulo.includes(texto) || categoria.includes(texto)) {
           item.style.display = "block";
-          elementosVisibles++; // Contamos cuántos se muestran
+          elementosVisibles++;
         } else {
           item.style.display = "none";
         }
       });
 
-      // Manejar el mensaje de "Sin resultados"
+      // Mensaje de "Sin resultados"
       const contenedorGrilla = document.getElementById("grilla-catalogo");
       let msjVacio = document.getElementById("mensaje-sin-resultados");
 
       if (elementosVisibles === 0) {
-        // Si no hay productos y el mensaje no existe, lo creamos
-        if (!msjVacio) {
+        if (!msjVacio && contenedorGrilla) {
           msjVacio = document.createElement("div");
           msjVacio.id = "mensaje-sin-resultados";
           msjVacio.className = "col-12 text-center text-muted my-5";
-          msjVacio.innerHTML = `<h4 class="fw-bold">No se encontraron productos para "${texto}"</h4><p>Intenta con otra palabra clave.</p>`;
+          msjVacio.innerHTML = `<h4 class="fw-bold text-white">No se encontraron productos para "${texto}"</h4><p class="text-muted">Intenta con otra palabra clave.</p>`;
           contenedorGrilla.appendChild(msjVacio);
-        } else {
-          // Si ya existe, solo actualizamos el texto y lo mostramos
-          msjVacio.innerHTML = `<h4 class="fw-bold">No se encontraron productos para "${texto}"</h4><p>Intenta con otra palabra clave.</p>`;
+        } else if (msjVacio) {
+          msjVacio.innerHTML = `<h4 class="fw-bold text-white">No se encontraron productos para "${texto}"</h4><p class="text-muted">Intenta con otra palabra clave.</p>`;
           msjVacio.style.display = "block";
         }
       } else {
-        // Si hay productos visibles, ocultamos el mensaje
         if (msjVacio) msjVacio.style.display = "none";
       }
     });
   }
 
   // ==========================================
-  // 3. BÚSQUEDA GLOBAL EN NAVBAR (Estilo Xbox)
+  // 3. CAPTURA DE BÚSQUEDA DESDE LA BARRA NAVBAR
   // ==========================================
-  const btnAbrirSearch = document.getElementById("btn-abrir-search-nav");
-  const btnCerrarSearch = document.getElementById("btn-cerrar-search-nav");
-  const searchOverlay = document.getElementById("search-overlay-nav");
-  const inputSearchNav = document.getElementById("input-busqueda-nav");
-  const formSearchNav = document.getElementById("form-busqueda-nav");
+  const searchForm = document.querySelector(".nav-search-box");
+  if (searchForm) {
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const input = searchForm.querySelector(".nav-search-input");
+      const termino = input ? input.value.trim() : "";
 
-  if (btnAbrirSearch && btnCerrarSearch && searchOverlay) {
-      btnAbrirSearch.addEventListener("click", function(e) {
-          e.preventDefault();
-          searchOverlay.classList.add("activo");
-          setTimeout(() => {
-          inputSearchNav.focus(); 
-          }, 100);
-      });
-
-      btnCerrarSearch.addEventListener("click", function() {
-          searchOverlay.classList.remove("activo");
-          inputSearchNav.value = ""; 
-      });
-
-      formSearchNav.addEventListener("submit", function(e) {
-          e.preventDefault();
-          const termino = inputSearchNav.value.trim();
-          
-          if (termino !== "") {
-              sessionStorage.setItem("busquedaPendiente", termino);
-              window.location.href = "catalogo.html";
-          }
-      });
+      if (termino !== "") {
+        sessionStorage.setItem("busquedaPendiente", termino);
+        window.location.href = "catalogo.html";
+      }
+    });
   }
 
   // ==========================================
@@ -155,10 +133,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const busquedaPendiente = sessionStorage.getItem("busquedaPendiente");
 
   if (buscadorCatalogo && busquedaPendiente) {
-      buscadorCatalogo.value = busquedaPendiente;
-      const eventoInput = new Event("input");
-      buscadorCatalogo.dispatchEvent(eventoInput);
-      sessionStorage.removeItem("busquedaPendiente");
+    buscadorCatalogo.value = busquedaPendiente;
+    buscadorCatalogo.dispatchEvent(new Event("input"));
+    sessionStorage.removeItem("busquedaPendiente");
   }
  // ==========================================
   // 5. RENDERIZAR PROMOS DINÁMICAS Y CARRUSEL
