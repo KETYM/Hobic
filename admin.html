@@ -45,8 +45,9 @@
 
                             <!-- CAMPO PARA LA IMAGEN (Ruta de archivo) -->
                             <div class="mb-3">
-                                <label class="form-label text-muted small fw-bold">Ruta de la Imagen</label>
-                                <input type="text" id="crud-imagen" class="form-control shadow-none" placeholder="ej: imagenes/nuevo.jpg" required>
+                                <label class="form-label text-muted small fw-bold">Subir Imagen</label>
+                                <input type="file" id="crud-imagen" class="form-control shadow-none" accept="image/*" required>
+                                <small class="text-muted" id="texto-imagen-actual"></small>
                             </div>
 
                             <!-- CAMPOS ESPECÍFICOS DINÁMICOS POR CATEGORÍA -->
