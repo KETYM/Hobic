@@ -12,50 +12,15 @@
 
 <body style="background-color: #f8f9fa;">
     <!-- HEADER -->
-    <header>
-        <nav>
-            <!-- 1. LOGO SVG -->
-            <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 50" width="180" height="50">
-                    <path d="M12,10 Q15,10 15,5 Q15,10 18,10 Q15,10 15,15 Q15,10 12,10 Z" fill="#ff7eb3"/>
-                    <path d="M25,12 C18,12 12,18 12,28 C12,38 18,42 25,42 L25,25 Z" fill="#ffffff"/>
-                    <path d="M28,25 L28,42 C35,42 41,38 41,28 C41,18 35,12 28,12 Z" fill="#e0006c"/>
-                    <path d="M18,26 h-2 v2 h2 v2 h2 v-2 h2 v-2 h-2 v-2 h-2 v2 z" fill="#043b7a"/>
-                    <circle cx="34" cy="24" r="1.5" fill="#043b7a"/>
-                    <circle cx="37" cy="28" r="1.5" fill="#043b7a"/>
-                    <text x="50" y="36" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#ffffff" letter-spacing="-1">HOBI<tspan fill="#e0006c">C</tspan></text>
-                </svg>
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Inicio</a> |
-                <a href="libros.html">Libros</a> |
-                <a href="series.html">Series</a> |
-                <a href="videojuegos.html">Videojuegos</a> |
-                <a href="mangas.html">Mangas</a> |
-                <a href="catalogo.html">Catálogo</a> |
-                <a href="blogs.html">Blogs</a>
-            </div>
-
-            <div class="nav-derecha">
-                <a href="inicioSesion.html" class="nav-user-btn" id="user-nav-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <span>Inicio de sesión</span>
-                </a>
-            </div>
-        </nav>
-    </header>
+    <header id="main-header" style="position: relative;"></header>
 
     <main class="container my-5">
         <h2 class="fw-bold mb-4">Finalizar Compra</h2>
-        
+
         <form id="form-pago" class="row">
             <!-- COLUMNA IZQUIERDA: Formulario -->
             <div class="col-lg-8">
-                
+
                 <!-- Datos de Envío -->
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body p-4">
@@ -71,7 +36,8 @@
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Dirección exacta</label>
-                                <input type="text" class="form-control shadow-none" placeholder="Calle, número, depto..." required>
+                                <input type="text" class="form-control shadow-none"
+                                    placeholder="Calle, número, depto..." required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Comuna / Ciudad</label>
@@ -85,29 +51,35 @@
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body p-4">
                         <h5 class="fw-bold mb-4">2. Medio de pago</h5>
-                        
+
                         <!-- Opciones de pago (Radios) -->
                         <div class="form-check mb-3 p-3 border rounded">
-                            <input class="form-check-input ms-1" type="radio" name="medioPago" id="pagoTarjeta" value="tarjeta" checked required>
+                            <input class="form-check-input ms-1" type="radio" name="medioPago" id="pagoTarjeta"
+                                value="tarjeta" checked required>
                             <label class="form-check-label ms-2 fw-bold w-100" for="pagoTarjeta">
                                 Tarjeta de Crédito / Débito
-                                <div class="text-muted small fw-normal mt-1">Serás redirigido a Webpay Plus al confirmar.</div>
+                                <div class="text-muted small fw-normal mt-1">Serás redirigido a Webpay Plus al
+                                    confirmar.</div>
                             </label>
                         </div>
-                        
+
                         <div class="form-check mb-3 p-3 border rounded">
-                            <input class="form-check-input ms-1" type="radio" name="medioPago" id="pagoTransferencia" value="transferencia">
+                            <input class="form-check-input ms-1" type="radio" name="medioPago" id="pagoTransferencia"
+                                value="transferencia">
                             <label class="form-check-label ms-2 fw-bold w-100" for="pagoTransferencia">
                                 Transferencia Bancaria
-                                <div class="text-muted small fw-normal mt-1">Te mostraremos los datos de la cuenta al finalizar.</div>
+                                <div class="text-muted small fw-normal mt-1">Te mostraremos los datos de la cuenta al
+                                    finalizar.</div>
                             </label>
                         </div>
 
                         <div class="form-check p-3 border rounded">
-                            <input class="form-check-input ms-1" type="radio" name="medioPago" id="pagoMercadoPago" value="mercadopago">
+                            <input class="form-check-input ms-1" type="radio" name="medioPago" id="pagoMercadoPago"
+                                value="mercadopago">
                             <label class="form-check-label ms-2 fw-bold w-100" for="pagoMercadoPago">
                                 MercadoPago
-                                <div class="text-muted small fw-normal mt-1">Paga con saldo o tarjetas guardadas en tu cuenta.</div>
+                                <div class="text-muted small fw-normal mt-1">Paga con saldo o tarjetas guardadas en tu
+                                    cuenta.</div>
                             </label>
                         </div>
                     </div>
@@ -121,16 +93,18 @@
                         <h5 class="fw-bold mb-4">Resumen</h5>
                         <div class="d-flex justify-content-between mb-3">
                             <span class="text-muted">Total a pagar</span>
-                            <span class="fw-bold fs-4 text-primary">$35.980</span>
+                            <span id="total-pago" class="fw-bold fs-4 text-primary">$0</span>
                         </div>
                         <hr>
-                        <p class="small text-muted mb-4">Tus datos personales se utilizarán para procesar tu pedido y respaldar tu experiencia en este sitio web.</p>
-                        
+                        <p class="small text-muted mb-4">Tus datos personales se utilizarán para procesar tu pedido y
+                            respaldar tu experiencia en este sitio web.</p>
+
                         <!-- Botón de Confirmar (submit del form) -->
-                        <button type="submit" class="btn btn-success w-100 py-3 fw-bold shadow-none" style="font-size: 1.1rem;">
+                        <button type="submit" class="btn btn-success w-100 py-3 fw-bold shadow-none"
+                            style="font-size: 1.1rem;">
                             Confirmar y Pagar
                         </button>
-                        
+
                         <div class="text-center mt-3">
                             <a href="carrito.html" class="text-decoration-none text-muted small">Volver al carrito</a>
                         </div>
@@ -139,8 +113,11 @@
             </div>
         </form>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+<script src="header.js"></script>
+    <script src="auth.js"></script>
+    <script src="carrito.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>

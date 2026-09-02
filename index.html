@@ -11,85 +11,21 @@
 </head>
 
 <body>
-<header style="position: relative;"> <!-- position: relative es vital aquí -->
-        <nav>
-            <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 50" width="180" height="50">
-                    <path d="M12,10 Q15,10 15,5 Q15,10 18,10 Q15,10 15,15 Q15,10 12,10 Z" fill="#ff7eb3"/>
-                    <path d="M25,12 C18,12 12,18 12,28 C12,38 18,42 25,42 L25,25 Z" fill="#ffffff"/>
-                    <path d="M28,25 L28,42 C35,42 41,38 41,28 C41,18 35,12 28,12 Z" fill="#e0006c"/>
-                    <path d="M18,26 h-2 v2 h2 v2 h2 v-2 h2 v-2 h-2 v-2 h-2 v2 z" fill="#043b7a"/>
-                    <circle cx="34" cy="24" r="1.5" fill="#043b7a"/>
-                    <circle cx="37" cy="28" r="1.5" fill="#043b7a"/>
-                    <text x="50" y="36" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#ffffff" letter-spacing="-1">HOBI<tspan fill="#e0006c">C</tspan></text>
-                </svg>
-            </a>
-            
-            <div class="nav-links">
-                <a href="index.html">Inicio</a> |
-                <a href="libros.html">Libros</a> |
-                <a href="series.html">Series</a> |
-                <a href="videojuegos.html">Videojuegos</a> |
-                <a href="mangas.html">Mangas</a> |
-                <a href="catalogo.html">Catálogo</a> |
-                <a href="blogs.html">Blogs</a>
-            </div>
-
-            <!-- Contenedor derecho: Lupa + Login + Carrito -->
-            <div class="nav-derecha">
-                <!-- NUEVO BOTÓN LUPA -->
-                <button id="btn-abrir-search-nav" title="Buscar" style="background: none; border: none; color: white; cursor: pointer; padding: 0; display: flex; align-items: center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
-
-                <a href="inicioSesion.html" class="nav-user-btn" id="user-nav-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <span>Inicio de sesión</span>
-                </a>
-
-                <a href="carrito.html" class="nav-cart-btn" title="Ir al carrito">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                </a>
-            </div>
-        </nav>
-
-        <!-- CAPA DE BÚSQUEDA OCULTA -->
-        <div id="search-overlay-nav" class="search-overlay">
-            <form id="form-busqueda-nav" class="d-flex w-100 align-items-center container h-100">
-                <input type="text" id="input-busqueda-nav" class="form-control rounded-0" placeholder="Buscar en Hobic..." style="background-color: #032a56; border: 2px solid #3483fa; color: white; height: 40px;">
-                <button type="submit" class="btn text-white px-3" style="background: none; border: none; height: 40px; display: flex; align-items: center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
-                <button type="button" id="btn-cerrar-search-nav" class="btn text-white px-3" style="font-weight: 500;">Cancelar</button>
-            </form>
-        </div>
-    </header>
+    <header id="main-header" style="position: relative;"></header>
     <div class="banner">
         <img src="imagenes/banner.jpeg" alt="Banner">
     </div>
-<div class="d-flex justify-content-center align-items-center mb-5 mt-4">
-    
-    <!-- el ícono  -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#e0006c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="me-3" style="margin-top: 8px;">
-        <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
-        <polyline points="17 2 12 7 7 2"></polyline>
-    </svg>
+    <div class="d-flex justify-content-center align-items-center mb-5 mt-4">
 
-    <h1 class="titulo-catalogo mb-0">BIENVENIDOS A HOBIC</h1>
-</div>
+        <!-- el ícono  -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#e0006c"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="me-3" style="margin-top: 8px;">
+            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+            <polyline points="17 2 12 7 7 2"></polyline>
+        </svg>
+
+        <h1 class="titulo-catalogo mb-0">BIENVENIDOS A HOBIC</h1>
+    </div>
 
     <main>
 
@@ -122,17 +58,18 @@
 
             </div>
         </section>
-<!-- SECCION 2 :EXPLORA POR CATEGORÍA -->
+        <!-- SECCION 2 :EXPLORA POR CATEGORÍA -->
         <section class="container my-5">
             <div class="d-flex justify-content-center align-items-center mb-4 mt-4">
                 <h2 class="titulo-catalogo mb-0 text-center" style="font-size: 24px;">EXPLORA NUESTROS UNIVERSOS</h2>
             </div>
-            
+
             <div class="row g-4 text-center">
                 <!-- Categoría Videojuegos -->
                 <div class="col-6 col-md-3">
                     <a href="videojuegos.html" class="text-decoration-none">
-                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria" style="background-color: #f8f9fa;">
+                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria"
+                            style="background-color: #f8f9fa;">
                             <h4 class="fw-bold text-dark mt-2">Videojuegos</h4>
                             <span class="text-muted" style="font-size: 14px;">Ver catálogo &rarr;</span>
                         </div>
@@ -141,7 +78,8 @@
                 <!-- Categoría Mangas -->
                 <div class="col-6 col-md-3">
                     <a href="mangas.html" class="text-decoration-none">
-                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria" style="background-color: #f8f9fa;">
+                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria"
+                            style="background-color: #f8f9fa;">
                             <h4 class="fw-bold text-dark mt-2">Mangas</h4>
                             <span class="text-muted" style="font-size: 14px;">Ver catálogo &rarr;</span>
                         </div>
@@ -150,7 +88,8 @@
                 <!-- Categoría Series -->
                 <div class="col-6 col-md-3">
                     <a href="series.html" class="text-decoration-none">
-                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria" style="background-color: #f8f9fa;">
+                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria"
+                            style="background-color: #f8f9fa;">
                             <h4 class="fw-bold text-dark mt-2">Series</h4>
                             <span class="text-muted" style="font-size: 14px;">Ver catálogo &rarr;</span>
                         </div>
@@ -159,7 +98,8 @@
                 <!-- Categoría Libros -->
                 <div class="col-6 col-md-3">
                     <a href="libros.html" class="text-decoration-none">
-                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria" style="background-color: #f8f9fa;">
+                        <div class="card shadow-sm border-0 h-100 py-4 tarjeta-categoria"
+                            style="background-color: #f8f9fa;">
                             <h4 class="fw-bold text-dark mt-2">Libros</h4>
                             <span class="text-muted" style="font-size: 14px;">Ver catálogo &rarr;</span>
                         </div>
@@ -173,23 +113,44 @@
             <div class="row g-4 text-center">
                 <div class="col-md-4">
                     <div class="p-4 border rounded shadow-sm bg-white h-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e0006c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="#e0006c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="mb-3">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
                         <h5 class="fw-bold" style="color: #043b7a;">Envíos a todo Chile</h5>
-                        <p class="text-muted small mb-0">Despachos rápidos y seguros para que tu aventura comience cuanto antes.</p>
+                        <p class="text-muted small mb-0">Despachos rápidos y seguros para que tu aventura comience
+                            cuanto antes.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="p-4 border rounded shadow-sm bg-white h-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e0006c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="#e0006c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="mb-3">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
                         <h5 class="fw-bold" style="color: #043b7a;">Pago 100% Seguro</h5>
-                        <p class="text-muted small mb-0">Tus datos están protegidos. Aceptamos todas las tarjetas de crédito y débito.</p>
+                        <p class="text-muted small mb-0">Tus datos están protegidos. Aceptamos todas las tarjetas de
+                            crédito y débito.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="p-4 border rounded shadow-sm bg-white h-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e0006c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="#e0006c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="mb-3">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg>
                         <h5 class="fw-bold" style="color: #043b7a;">Calidad Garantizada</h5>
-                        <p class="text-muted small mb-0">Productos originales y seleccionados por expertos para coleccionistas.</p>
+                        <p class="text-muted small mb-0">Productos originales y seleccionados por expertos para
+                            coleccionistas.</p>
                     </div>
                 </div>
             </div>
@@ -241,7 +202,10 @@
         <p>&copy; 2026 Hobic - Todos los derechos reservados</p>
     </footer>
 
-    <script src="script.js"></script>
+<script src="header.js"></script>
+    <script src="auth.js"></script>
+    <script src="carrito.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

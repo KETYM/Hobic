@@ -1,148 +1,198 @@
+/* ========================================== */
+/* VARIABLES GLOBALES                         */
+/* ========================================== */
+:root {
+    --color-primario: #043b7a;
+    --color-secundario: #e0006c;
+    --color-fondo: #f5f5f5;
+    --color-texto: #222;
+    --color-blanco: #ffffff;
+    --color-footer: #242424;
+    --color-btn: #2563eb;
+    --color-btn-hover: #1d4ed8;
+}
+
+/* ========================================== */
+/* RESET Y ESTILOS BASE                       */
+/* ========================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-header{
-    width: 100%;
-    background-color: #054792;
-    color: #ffffff; /* las rayitas blancas */
-    text-align: center;
-
-}
-/* Barra de navegación */
-nav {
-  width: 100%;
-  background-color: #043b7a; 
-padding: 8px 20px;
-  display: flex !important;  
-  flex-wrap: wrap !important;    
- justify-content: space-between;
-  align-items: center;
-  gap: 15px;  
-  box-sizing: border-box;               
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex: 1;
-}
-
-/* Enlaces del menú */
-nav a {
-  color: #ffffff;            
-  text-decoration: none;    
-  font-weight: 500;
-  font-size: 14px;
-  transition: opacity 0.2s ease;
-  padding: 8px 15px;
-  border-radius: 5px;
-}
-
-/* Efecto al pasar el cursor */
-nav a:hover {
-  opacity: 0.8;              /* Ligera transparencia al pasar el mouse */
-}
-
-/* --- NUEVOS ESTILOS NAV DERECHO --- */
-.nav-derecha {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 20px;
-  flex-wrap: nowrap; /* Evita que los elementos salten a la siguiente línea */
-}
-
-/* Ajuste al contenedor del usuario (login/saludo) para que no se quiebre */
-#user-nav-container, .nav-user-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 10px;
-  border-radius: 4px;
-  white-space: nowrap; /* Fuerza a que el texto se mantenga en una sola línea */
-}
-/* Botón de inicio de sesión (derecha) */
-.nav-user-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 10px;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-.nav-user-btn svg {
-  display: block;
-}
-
-.nav-user-btn:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f5f5;
-    color: #222;
-    cursor: url('imagenes/joystick.png')16 16, auto;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    cursor: url('imagenes/joystick.png') 16 16, auto;
 }
 
-.banner img{
- width:100%;
- max-height: 400px;
- object-fit: cover;
+a, button, .btn {
+    cursor: url('imagenes/joystick.png') 16 16, pointer;
 }
 
 h1 {
     text-align: center;
     margin: 20px 0;
-  
-}
-
-header h1 {
-    margin-bottom: 10px;
-}
-
-main {
-    width: 90%;
-    max-width: 900px;
-    margin: 30px auto;
-}
-
-.contenedor {
-    background-color: white;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     margin-top: 0;
 }
 
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+    min-height: 60vh;
+}
+
+/* ========================================== */
+/* CABECERA Y NAVEGACIÓN                      */
+/* ========================================== */
+header {
+    width: 100%;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+/* Especificidad aumentada para evitar !important */
+header nav {
+    width: 100%;
+    background-color: var(--color-primario);
+    padding: 2px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+header nav > a > svg {
+    height: 35px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+}
+
+header nav .nav-links a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: opacity 0.2s ease;
+    padding: 4px 10px;
+    border-radius: 5px;
+}
+
+header nav .nav-links a:hover {
+    opacity: 0.8;
+}
+
+.nav-derecha {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+#user-nav-container, 
+.nav-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.nav-user-btn svg {
+    display: block;
+}
+
+.nav-user-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================== */
+/* BUSCADOR ESTILO XBOX (OVERLAY)             */
+/* ========================================== */
+.search-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primario);
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    z-index: 100;
+}
+
+.search-overlay.activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-overlay input::placeholder {
+    color: #8ab4f8;
+}
+
+/* Mantiene !important solo para anular outline nativo de Bootstrap */
+.search-overlay input:focus {
+    box-shadow: none;
+    background-color: #021f40 !important; 
+    color: var(--color-blanco);
+}
+
+/* ========================================== */
+/* COMPONENTES Y ESTRUCTURA                   */
+/* ========================================== */
+.banner img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.contenedor {
+    background-color: var(--color-blanco);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
 button {
-    background-color: #2563eb;
-    color: white;
+    background-color: var(--color-btn);
+    color: var(--color-blanco);
     border: none;
     padding: 10px 16px;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 button:hover {
-    background-color: #1d4ed8;
+    background-color: var(--color-btn-hover);
 }
 
 input {
@@ -187,83 +237,6 @@ input {
 .tarjeta h3 {
     margin-top: 0;
 }
-/* Tarjeta de autenticación */
-.auth-card {
-  max-width: 400px;
-  margin: 50px auto;
-}
-
-.btn-primary {
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* Enlace a Crear Cuenta */
-.auth-registro {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.auth-registro a {
-  color: #043b7a;
-  font-weight: 600;
-  text-decoration: none;
-  margin-left: 5px;
-}
-
-.auth-registro a:hover {
-  text-decoration: underline;
-}
-
-/* Línea divisoria */
-.divisor-linea {
-  text-align: center;
-  margin: 18px 0;
-  position: relative;
-}
-
-.divisor-linea::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: #ddd;
-  z-index: 1;
-}
-
-.divisor-linea span {
-  position: relative;
-  z-index: 2;
-  background-color: #ffffff;
-  padding: 0 10px;
-  color: #888;
-  font-size: 13px;
-}
-
-/* Botón Admin */
-.btn-admin {
-  display: block;
-  text-align: center;
-  width: 100%;
-  background-color: transparent;
-  color: #043b7a;
-  border: 1.5px solid #043b7a;
-  padding: 9px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-}
-
-.btn-admin:hover {
-  background-color: #043b7a;
-  color: #ffffff;
-}
 
 .alerta {
     background-color: #e5e7eb;
@@ -271,21 +244,14 @@ input {
     border-radius: 5px;
 }
 
-footer {
-    text-align: center;
-    background-color: #242424;
-    color: white;
-    padding: 20px;
-    margin-top: 40px;
-}
-a, button, .btn {
-    cursor: url('imagenes/joystick.png') 16 16, pointer;
-}
+/* ========================================== */
+/* CATÁLOGO Y FILTROS                         */
+/* ========================================== */
 .titulo-catalogo {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    background: linear-gradient(90deg, #043b7a, #e0006c);
+    background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
@@ -298,118 +264,148 @@ a, button, .btn {
     position: absolute;
     width: 100%;
     height: 4px;
-    background-color: #e0006c;
+    background-color: var(--color-secundario);
     bottom: 0;
     left: 0;
     border-radius: 2px;
 }
-/* Estilos para los filtros del catálogo */
+
+/* Flex y anchos manejados naturalmente, sin forzar */
 .btn-filtro {
     border: 1px solid #dee2e6;
     border-radius: 50px;
     color: #495057;
-    background-color: #ffffff;
+    background-color: var(--color-blanco);
     padding: 6px 20px;
     font-weight: 600;
     font-size: 14px;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    /* para congelar el tamaño */
-    width: max-content !important;
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
+    width: max-content;
+    flex: 0 0 auto;
+    white-space: nowrap;
 }
 
 .btn-filtro:hover {
-    border-color: #e0006c;
-    color: #e0006c;
+    border-color: var(--color-secundario);
+    color: var(--color-secundario);
     background-color: #fff5f8;
 }
 
 .btn-filtro.active {
-    background-color: #043b7a;
-    color: #ffffff;
-    border-color: #043b7a;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border-color: var(--color-primario);
     box-shadow: 0 4px 8px rgba(4, 59, 122, 0.2);
 }
+
 /* ========================================== */
-/* RESPONSIVIDAD PARA PANTALLAS MÁS PEQUEÑAS  */
+/* AUTENTICACIÓN                              */
+/* ========================================== */
+.auth-card {
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.btn-primary {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.auth-registro {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-registro a {
+    color: var(--color-primario);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.auth-registro a:hover {
+    text-decoration: underline;
+}
+
+.divisor-linea {
+    text-align: center;
+    margin: 18px 0;
+    position: relative;
+}
+
+.divisor-linea::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #ddd;
+    z-index: 1;
+}
+
+.divisor-linea span {
+    position: relative;
+    z-index: 2;
+    background-color: var(--color-blanco);
+    padding: 0 10px;
+    color: #888;
+    font-size: 13px;
+}
+
+.btn-admin {
+    display: block;
+    text-align: center;
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-primario);
+    border: 1.5px solid var(--color-primario);
+    padding: 9px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.btn-admin:hover {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+/* ========================================== */
+/* FOOTER                                     */
+/* ========================================== */
+footer, .retro-footer {
+    text-align: center;
+    background-color: var(--color-footer);
+    color: var(--color-blanco);
+    padding: 12px 0;
+    margin-top: 40px;
+}
+
+/* ========================================== */
+/* RESPONSIVIDAD (MEDIA QUERIES)              */
 /* ========================================== */
 @media (max-width: 992px) {
-    nav {
-        flex-direction: column !important; /* Apila los 3 bloques verticalmente */
+    header nav {
+        flex-direction: column;
         justify-content: center;
         gap: 15px;
         padding: 15px 10px;
     }
 
     .nav-links {
-        flex-wrap: wrap; /* Permite que los enlaces bajen de línea si no caben */
+        flex-wrap: wrap;
         justify-content: center;
         gap: 5px;
         text-align: center;
     }
 
     .nav-derecha {
-        justify-content: center; /* Centra el carrito y el login abajo */
+        justify-content: center;
         width: 100%;
     }
-}
-/* ========================================== */
-/* BUSCADOR barra nav         */
-/* ========================================== */
-.search-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #043b7a; /* El azul de tu barra */
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease-in-out;
-    z-index: 100;
-}
-
-.search-overlay.activo {
-    opacity: 1;
-    visibility: visible;
-}
-
-.search-overlay input::placeholder {
-    color: #8ab4f8;
-}
-
-.search-overlay input:focus {
-    box-shadow: none;
-    background-color: #021f40 !important;
-    color: white;
-}
-/* ========================================== */
-/* AJUSTES DE GROSOR (NAVBAR Y FOOTER)        */
-/* ========================================== */
-
-/* 1. Barra de navegación más delgada */
-nav {
-    padding: 2px 20px !important; /* Reduce el espacio arriba y abajo de la barra */
-}
-
-/* 2. Achicamos sutilmente el logo para que no estire la barra */
-nav > a > svg {
-    height: 35px !important; 
-    width: auto !important;
-}
-
-/* 3. Quitamos relleno vertical extra a los enlaces centrales */
-.nav-links a {
-    padding: 4px 10px !important;
-}
-
-/* 4. Footer principal y retro más delgados */
-footer, .retro-footer {
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-    margin-top: 40px !important; /* Un poco de respiro antes de llegar al fondo */
 }
