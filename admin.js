@@ -1,5 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
     if (!window.location.pathname.includes("admin.html")) return;
+ // ==========================================
+    // SEGURIDAD Y RESTRICCIÓN DE VISTAS (INVENTARIO)
+    // ==========================================
+    const sesion = JSON.parse(sessionStorage.getItem("usuarioActual")); 
+    
+    // Si no hay sesión o es un cliente normal, lo pateamos al inicio
+    if (!sesion || (sesion.rol !== "admin" && sesion.rol !== "vendedor")) {
+        window.location.href = "index.html";
+        return;
+    }
+
+    // Si es vendedor, ocultamos el botón de Usuarios y cambiamos la etiqueta
+    if (sesion.rol === "vendedor") {
+        const btnUsuarios = document.querySelector('a[href="adminUsuarios.html"]');
+        if (btnUsuarios) btnUsuarios.remove();
+        
+        const badgeAdmin = document.querySelector('.badge.bg-danger.fs-6');
+        if (badgeAdmin) {
+            badgeAdmin.textContent = "Modo Vendedor";
+            badgeAdmin.classList.replace("bg-danger", "bg-warning");
+            badgeAdmin.classList.add("text-dark");
+        }
+    }
+
+    // 2. Si es vendedor, oculta cosas de Admin
+    if (sesion.rol === "vendedor") {
+        // Borrar el botón de "Ir a Usuarios"
+        const btnUsuarios = document.querySelector('a[href="adminUsuarios.html"]');
+        if (btnUsuarios) btnUsuarios.remove();
+        
+        // Cambiar la etiqueta roja de la esquina
+        const badgeAdmin = document.querySelector('.badge.bg-danger.fs-6');
+        if (badgeAdmin) {
+            badgeAdmin.textContent = "Modo Vendedor";
+            badgeAdmin.classList.replace("bg-danger", "bg-warning");
+            badgeAdmin.classList.add("text-dark");
+        }
+    }
 
     // 1. CONFIGURACIÓN DE ESQUEMA POR CATEGORÍA
     const esquemasPorCategoria = {
@@ -29,41 +67,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // 2. INICIALIZAR INVENTARIO BASE (CON PROMOS Y ATRIBUTOS)
+    // 2. INICIALIZAR INVENTARIO BASE (CON PROMOS, ATRIBUTOS Y STOCK CRÍTICO)
     let inventario = JSON.parse(localStorage.getItem("inventarioHobic"));
     
-    if (!inventario || inventario.length <= 3 || !inventario[0].hasOwnProperty("promo")) {
+    if (!inventario || inventario.length <= 3 || !inventario[0].hasOwnProperty("stockCritico")) {
         inventario = [
             { 
-                id: 1, nombre: "Dune (Edición Especial)", categoria: "Libros", precio: 15990, stock: 15, imagen: "imagenes/dune.jpg", promo: false,
+                id: 1, nombre: "Dune (Edición Especial)", categoria: "Libros", precio: 15990, stock: 15, stockCritico: 5, imagen: "imagenes/dune.jpg", promo: false,
                 detalles: { attr1: "Frank Herbert", attr2: "Debolsillo", attr3: "704 págs.", attr4: "Español" }
             },
             { 
-                id: 2, nombre: "El Señor de los Anillos", categoria: "Libros", precio: 19990, stock: 10, imagen: "imagenes/sdla.jpg", promo: false,
+                id: 2, nombre: "El Señor de los Anillos", categoria: "Libros", precio: 19990, stock: 4, stockCritico: 5, imagen: "imagenes/sdla.jpg", promo: false,
                 detalles: { attr1: "J.R.R. Tolkien", attr2: "Minotauro", attr3: "576 págs.", attr4: "Español" }
             },
             { 
-                id: 3, nombre: "Spy x Family Vol. 1", categoria: "Mangas", precio: 19790, stock: 20, imagen: "imagenes/Spy.jpg", promo: false,
+                id: 3, nombre: "Spy x Family Vol. 1", categoria: "Mangas", precio: 19790, stock: 20, stockCritico: 5, imagen: "imagenes/Spy.jpg", promo: false,
                 detalles: { attr1: "Tatsuya Endo", attr2: "Editorial Ivrea", attr3: "9 capítulos", attr4: "Español" }
             },
             { 
-                id: 4, nombre: "Your Name Vol. 3", categoria: "Mangas", precio: 15990, stock: 12, imagen: "imagenes/YourName.jpg", promo: true,
+                id: 4, nombre: "Your Name Vol. 3", categoria: "Mangas", precio: 15990, stock: 12, stockCritico: 5, imagen: "imagenes/YourName.jpg", promo: true,
                 detalles: { attr1: "Makoto Shinkai", attr2: "Planeta Cómic", attr3: "Tomo único", attr4: "Español" }
             },
             { 
-                id: 5, nombre: "Samurai X", categoria: "Series", precio: 19790, stock: 8, imagen: "imagenes/samurai.jpg", promo: false,
+                id: 5, nombre: "Samurai X", categoria: "Series", precio: 19790, stock: 8, stockCritico: 5, imagen: "imagenes/samurai.jpg", promo: false,
                 detalles: { attr1: "Nobuhiro Watsuki", attr2: "Studio Gallop", attr3: "95 capítulos", attr4: "Español latino" }
             },
             { 
-                id: 6, nombre: "Neon Genesis Evangelion", categoria: "Series", precio: 15990, stock: 5, imagen: "imagenes/evangelion.jpg", promo: false,
+                id: 6, nombre: "Neon Genesis Evangelion", categoria: "Series", precio: 15990, stock: 3, stockCritico: 5, imagen: "imagenes/evangelion.jpg", promo: false,
                 detalles: { attr1: "Hideaki Anno", attr2: "Gainax", attr3: "26 capítulos", attr4: "Español latino" }
             },
             { 
-                id: 7, nombre: "Need for Speed Unbound", categoria: "Videojuegos", precio: 19790, stock: 18, imagen: "imagenes/nfs.jpg", promo: false,
+                id: 7, nombre: "Need for Speed Unbound", categoria: "Videojuegos", precio: 19790, stock: 18, stockCritico: 5, imagen: "imagenes/nfs.jpg", promo: false,
                 detalles: { attr1: "Criterion Games", attr2: "Electronic Arts", attr3: "PS5 / Xbox Series / PC", attr4: "Español" }
             },
             { 
-                id: 8, nombre: "Halo Infinite", categoria: "Videojuegos", precio: 15990, stock: 15, imagen: "imagenes/halo.jpg", promo: true,
+                id: 8, nombre: "Halo Infinite", categoria: "Videojuegos", precio: 15990, stock: 15, stockCritico: 5, imagen: "imagenes/halo.jpg", promo: true,
                 detalles: { attr1: "343 Industries", attr2: "Xbox Game Studios", attr3: "Xbox One / Series / PC", attr4: "Español" }
             }
         ];
@@ -78,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectCategoria = document.getElementById("crud-categoria");
     const inputPrecio = document.getElementById("crud-precio");
     const inputStock = document.getElementById("crud-stock");
+    const inputStockCritico = document.getElementById("crud-stock-critico"); // NUEVO
     const inputImagen = document.getElementById("crud-imagen");
     const checkPromo = document.getElementById("crud-promo");
     const textoImagenActual = document.getElementById("texto-imagen-actual");
@@ -135,12 +174,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. RENDERIZAR TABLA CON BADGES
+    // 5. RENDERIZAR TABLA CON BADGES Y ALERTA CRÍTICA
     function renderizarTabla() {
         if (!tablaInventario) return;
         tablaInventario.innerHTML = "";
         inventario.forEach((prod) => {
-            const stockBadge = prod.stock <= 5 ? 'bg-danger' : 'bg-success';
+            const stockActual = parseInt(prod.stock) || 0;
+            const stockCritico = parseInt(prod.stockCritico) || 0;
+            
+            // Determinar color base del stock y si lleva alerta crítica
+            let stockBadge = 'bg-success';
+            let alertaVisual = '';
+            
+            if (stockActual <= stockCritico) {
+                stockBadge = 'bg-danger';
+                alertaVisual = `<br><span class="badge bg-danger mt-1 text-uppercase" style="font-size: 10px; opacity: 0.9;">¡Stock Crítico!</span>`;
+            }
+
             const promoBadge = prod.promo ? `<span class="badge bg-warning text-dark ms-2">Promo</span>` : '';
             
             tablaInventario.innerHTML += `
@@ -154,7 +204,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     </td>
                     <td><span class="badge bg-secondary">${prod.categoria}</span></td>
                     <td>$${prod.precio.toLocaleString("es-CL")}</td>
-                    <td><span class="badge ${stockBadge}">${prod.stock} un.</span></td>
+                    <td>
+                        <span class="badge ${stockBadge}">${stockActual} un.</span>
+                        ${alertaVisual}
+                    </td>
                     <td class="text-end pe-4">
                         <button class="btn btn-sm btn-primary me-1" onclick="editarProducto(${prod.id})">Editar</button>
                         <button class="btn btn-sm btn-danger" onclick="eliminarProducto(${prod.id})">Borrar</button>
@@ -184,6 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 categoria: selectCategoria.value,
                 precio: parseInt(inputPrecio.value),
                 stock: parseInt(inputStock.value),
+                stockCritico: inputStockCritico ? parseInt(inputStockCritico.value) : 0, // NUEVO
                 imagen: imagenFinal,
                 promo: checkPromo ? checkPromo.checked : false,
                 detalles: {
@@ -225,6 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             inputPrecio.value = producto.precio;
             inputStock.value = producto.stock;
+            if (inputStockCritico) inputStockCritico.value = producto.stockCritico || 0; // NUEVO
 
             if (checkPromo) checkPromo.checked = producto.promo || false;
 
