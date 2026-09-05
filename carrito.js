@@ -103,10 +103,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderizarCarrito();
   }
+// ==========================================
+  // 2. LÓGICA DE LA PÁGINA DE PAGO
+  // ==========================================
+  
+  // Activar los selectores de Región y Comuna si estamos en la página de pago
+  if (typeof inicializarSelectsRegionComuna === "function") {
+      inicializarSelectsRegionComuna("region", "comuna");
+  }
 
- // ==========================================
- // 2. LÓGICA DE LA PÁGINA DE PAGO
- // ==========================================
+  //validacion de telefono
+const inputTelefono = document.getElementById("telefono");
+  const errorTelefono = document.getElementById("error-telefono");
+
+  if (inputTelefono) {
+      inputTelefono.addEventListener("input", function() {
+          // 1. Elimina todo lo que NO sea un número o el signo '+'
+          let valor = this.value.replace(/[^0-9+]/g, "");
+          
+          // 2. Limita el largo máximo a 12 caracteres (ej: +56912345678)
+          if (valor.length > 12) {
+              valor = valor.slice(0, 12);
+          }
+          this.value = valor;
+
+          // 3. Validación inteligente: Solo muestra error si ya escribió harto y está mal, o al salir.
+          const telefonoRegex = /^(\+?56)?9\d{8}$/;
+          if (errorTelefono) {
+              // Si está vacío o recién empieza a escribir (menos de 9 caracteres totales), no muestra error rojo
+              if (valor.length === 0 || valor.length < 9) {
+                  errorTelefono.classList.add("d-none"); 
+              } else if (!telefonoRegex.test(valor)) {
+                  errorTelefono.classList.remove("d-none"); // Muestra error si tiene 9 o más caracteres pero el formato es incorrecto
+              } else {
+                  errorTelefono.classList.add("d-none"); // Oculta si ya está perfecto (ej: 912345678)
+              }
+          }
+      });
+  }
+
   const formPago = document.getElementById("form-pago");
   const totalPagoElement = document.getElementById("total-pago");
 
@@ -129,12 +164,45 @@ document.addEventListener("DOMContentLoaded", function () {
   if (formPago) {
     formPago.addEventListener("submit", function (e) {
       e.preventDefault(); 
-      alert("¡Pago exitoso! Tu pedido está siendo procesado.\nGracias por comprar en Hobic.");
+      
+      const telefono = document.getElementById("telefono").value.trim();
+      const errorTelefono = document.getElementById("error-telefono");
+      if (errorTelefono) errorTelefono.classList.add("d-none");
+
+      // Validar formato de teléfono chileno (9 dígitos empezando por 9, o con +569)
+      const telefonoRegex = /^(\+?56)?9\d{8}$/;
+      if (!telefonoRegex.test(telefono)) {
+          if (errorTelefono) {
+              errorTelefono.classList.remove("d-none");
+          } else {
+              alert("El número de teléfono no es válido para Chile (ej: 912345678).");
+          }
+          return; // Detiene el pago si el teléfono está mal escrito
+      }
+
+      // Si todo está correcto, procesamos la boleta
+      let carritoActual = JSON.parse(localStorage.getItem("carritoHobic")) || [];
+      let totalPlata = carritoActual.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+
+      const detalleCompra = {
+        fecha: new Date().toLocaleString("es-CL"),
+        productos: carritoActual,
+        total: totalPlata,
+        envio: {
+            direccion: document.getElementById("direccion").value.trim(),
+            region: document.getElementById("region").value,
+            comuna: document.getElementById("comuna").value,
+            telefono: telefono
+        }
+      };
+
+      localStorage.setItem("ultimaBoleta", JSON.stringify(detalleCompra));
       localStorage.removeItem("carritoHobic");
-      window.location.href = "index.html";
+
+      alert("¡Pago exitoso! Redirigiendo a tu comprobante de compra...");
+      window.location.href = "boleta.html";
     });
   }
-
   // ==========================================
   // 3. ICONOS GRISES EN CATÁLOGOS Y DETALLE
   // ==========================================

@@ -738,3 +738,44 @@ body.pattern-checker {
         text-align: center;
     }
 }
+body.pattern-grid, body.pattern-dots, body.pattern-checker {
+    cursor: url('../imagenes/joystick.png') 16 16, auto;
+}
+
+a, button, .btn {
+    cursor: url('../imagenes/joystick.png') 16 16, pointer;
+}
+.nav-search-box {
+    display: flex !important;
+    align-items: center !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid #232f48 !important;
+    border-radius: 50px !important;
+    padding: 4px 12px !important;
+    width: 200px !important;
+    margin: 0 10px !important;
+}
+
+.nav-search-icon {
+    color: #94a3b8 !important;
+    margin-right: 6px !important;
+    flex-shrink: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.nav-search-input {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.nav-search-input::placeholder {
+    color: #64748b !important;
+}

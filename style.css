@@ -523,7 +523,7 @@ section.container .col-md-4 p {
 }
 
 /* ==================================================== */
-/* 7. DETALLE DE PRODUCTO / COMPRA (HALO CORREGIDO)     */
+/* 7. DETALLE DE PRODUCTO / COMPRA     */
 /* ==================================================== */
 .col-lg-8 .bg-white,
 .col-lg-4 .bg-white,
@@ -610,7 +610,7 @@ section.container .col-md-4 p {
 }
 
 /* ==================================================== */
-/* 9. PANEL ADMIN (UNIFICADO EN BLANCO, SIN LUPA)       */
+/* 9. PANEL ADMIN       */
 /* ==================================================== */
 body[style*="#f8f9fa"] {
     background-color: #f8f9fa !important;
